@@ -1,0 +1,10 @@
+{
+    "C_Cpp.default.compilerPath": "cl.exe",
+    "files.associations": {
+        "collision.h": "c",
+        "jo.h": "c",
+        "sgl_prototypes.h": "c",
+        "hero.h": "c",
+        "level.h": "c"
+    }
+}
