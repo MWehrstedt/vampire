@@ -1,10 +1,14 @@
 {
-    "C_Cpp.default.compilerPath": "cl.exe",
+    "C_Cpp.default.compilerPath": "d:\\OneDrive\\RetroDev\\Saturn\\Compiler\\WINDOWS\\libexec\\gcc\\sh-elf\\9.3.0\\cc1.exe",
     "files.associations": {
         "collision.h": "c",
         "jo.h": "c",
         "sgl_prototypes.h": "c",
         "hero.h": "c",
-        "level.h": "c"
+        "level.h": "c",
+        "AKI_WALK.C": "cpp",
+        "3d.h": "c",
+        "sonic.h": "c",
+        "anim_sample.h": "c"
     }
 }

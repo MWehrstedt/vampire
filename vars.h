@@ -3,33 +3,30 @@
 
 #include "types.h"
 
-typedef enum
-{
-    MAINMENU = 0,
-    GAMEPLAY = 1,
-    FINANCES = 2,
-    PAUSED = 3,
-    MENU = 4
-} gamestate_e;
+#define CAMERA_DEFAULT_OFFSET_Y toFIXED(10)
+#define HERO_DEFAULT_WALKSPEED toFIXED(0.85f)
+#define HERO_DEFAULT_VERTICALJUMPSPEED toFIXED(5.7f)
+#define HERO_DEFAULT_HORIZONTALJUMPSPEED toFIXED(0.95f)
 
-typedef enum
-{
-    IDLE,
-    WALKING,
-    ATTACK,
-    JUMP,
-    HIT,
-    DYING
-} herostate_e;
+#define HITBOX_TYPE_SOLID   1
+#define HITBOX_TYPE_SEMISOLID   2
+
+#define DYNAMIC_HITBOX_TYPE_TEMP_SOLID 1
 
 extern camera_t camera;
 extern gamestate_e gamestate;
 extern herostate_e herostate;
 extern gravity_t gravity;
 extern collision_t collision;
-extern FIXED friction;
-extern int iterator;
-extern int pc;
-extern int rc;
 
+extern int iterator;
+extern bool tempSolid;
+extern FIXED animation_percent;
+
+extern level_t level1;
+extern level_t* currentLevel;
+extern const hitbox_t* currentLevelHitboxes;
+extern dynamic_hitbox_t* currentLevelDynamicHitboxes;
+
+extern jo_img backgroundImage;
 #endif

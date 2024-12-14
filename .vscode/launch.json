@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run compile.bat",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "compile",
+            "program": "${workspaceFolder}/compile.bat",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal"
+        }
+    ]
+}

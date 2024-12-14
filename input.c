@@ -5,6 +5,7 @@
 
 void handleGameplayInput()
 {
+
     // Movement
     if (jo_is_pad1_key_pressed(JO_KEY_LEFT))
     {
@@ -25,7 +26,7 @@ void handleGameplayInput()
         }
     }
 
-    if (!jo_is_pad1_key_pressed(JO_KEY_LEFT) && !jo_is_pad1_key_pressed(JO_KEY_RIGHT))
+    if (herostate != JUMP && !jo_is_pad1_key_pressed(JO_KEY_LEFT) && !jo_is_pad1_key_pressed(JO_KEY_RIGHT))
     {
         if (herostate == IDLE || herostate == WALKING)
         {
@@ -33,13 +34,18 @@ void handleGameplayInput()
         }
     }
 
-
     // Jump
     if (jo_is_pad1_key_down(JO_KEY_C))
     {
         if (hero.isGrounded && (herostate == IDLE || herostate == WALKING))
         {
             hero.speedY = -jumpHeight;
+
+            if (hero.speedX < JO_FIXED_0)
+                hero.speedX = -HERO_DEFAULT_HORIZONTALJUMPSPEED;
+            else if (hero.speedX > JO_FIXED_0)
+                hero.speedX = HERO_DEFAULT_HORIZONTALJUMPSPEED;
+
             herostate = JUMP;
         }
     }
@@ -52,23 +58,28 @@ void handleGameplayInput()
     }
 
     // DEBUG
-    if (jo_is_pad1_key_pressed(JO_KEY_L))
+    if (jo_is_pad1_key_down(JO_KEY_L))
     {
-        hero.speedY = toFIXED(-3);
+        // hero.speedY = toFIXED(-3);
+        if (currentLevel->currentChunk > 0)
+        {
+            currentLevel->currentChunk = (currentLevel->currentChunk - 1) % level1.chunks;
+        }
     }
-    else if (jo_is_pad1_key_pressed(JO_KEY_R))
+    else if (jo_is_pad1_key_down(JO_KEY_R))
     {
-        hero.speedY = toFIXED(3);
+        // hero.speedY = toFIXED(3);
+        currentLevel->currentChunk = (currentLevel->currentChunk + 1) % level1.chunks;
     }
 
-    if (jo_is_pad1_key_pressed(JO_KEY_X))
+    if (jo_is_pad1_key_down(JO_KEY_X))
     {
-        camera.y -= JO_FIXED_1;
+        tempSolid = false;
     }
-    else if (jo_is_pad1_key_pressed(JO_KEY_Z))
-    {
-        camera.y += JO_FIXED_1;
-    }
+    // else if (jo_is_pad1_key_pressed(JO_KEY_Z))
+    // {
+    //     camera.y += JO_FIXED_1;
+    // }
 
     if (jo_is_pad1_key_pressed(JO_KEY_A))
     {

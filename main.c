@@ -44,13 +44,19 @@ void initGameplay()
     jo_sprite_add_tga("TEX", "EGGSHIP.TGA", JO_COLOR_Purple);
 
     hero = (hero_t){
-        .x = toFIXED(100),
-        .y = toFIXED(-4),
+        .counter = 0,
+        .currentKeyframe = 0,
+        .x = toFIXED(40),
+        .y = toFIXED(-5),
         .hitbox = (hitbox_t){
             .width = toFIXED(9),
             .height = toFIXED(9),
             .depth = toFIXED(11)}};
     herostate = IDLE;
+
+    currentLevel = &level1;
+    currentLevelHitboxes = level01Hitboxes;
+    currentLevelDynamicHitboxes = level01DynamicHitboxes;
 }
 
 void update(void)
@@ -67,9 +73,10 @@ void update(void)
 
 void jo_main(void)
 {
-    jo_core_init(JO_COLOR_Cyan);
+    jo_core_init(JO_COLOR_Black);
 
     gamestate = GAMEPLAY;
+    initBackgroundGfx(0);
     initGameplay();
     initGameplayCamera();
 

@@ -7,7 +7,6 @@ int rc = 0;
 
 FIXED detectCollisionX(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2)
 {
-    pc++;
     if (jo_square_intersect(x1, y1, width1, height1, x2, y2, width2, height2))
     {
         // jo_printf(0, 6, "collision X:  %d ", jo_fixed2int(JO_MIN((x1 + width1 - x2), (x2 + width2 - x1))));
@@ -18,9 +17,7 @@ FIXED detectCollisionX(const FIXED x1, const FIXED y1, const FIXED width1, const
 }
 
 FIXED detectCollisionY(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2)
-{
-    rc++;
-    
+{   
     if (jo_square_intersect(x1, y1, width1, height1, x2, y2, width2, height2))
     {
         // jo_printf(0, 7, "collision Y:  %d ", jo_fixed2int(JO_MIN((y1 + height1 - y2), (y2 + height2 - y1))));
