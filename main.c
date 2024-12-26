@@ -39,21 +39,31 @@
 
 void initGameplay()
 {
-    jo_sprite_add_tga("TEX", "EGGFACE.TGA", JO_COLOR_Transparent);
-    jo_sprite_add_tga("TEX", "EGGSMILE.TGA", JO_COLOR_Transparent);
-    jo_sprite_add_tga("TEX", "EGGSHIP.TGA", JO_COLOR_Purple);
+
+    jo_printf(0, 3, "                         ");
+    jo_printf(0, 4, "                         ");
+    jo_printf(0, 5, "                         ");
+    jo_printf(0, 6, "                         ");
+    jo_printf(0, 7, "                         ");
+    jo_printf(0, 8, "                         ");
+    jo_printf(0, 9, "                         ");
 
     hero = (hero_t){
         .counter = 0,
         .currentKeyframe = 0,
-        .x = toFIXED(40),
-        .y = toFIXED(-5),
+        .x = toFIXED(-300),
+        .y = toFIXED(-15),
         .hitbox = (hitbox_t){
             .width = toFIXED(9),
-            .height = toFIXED(9),
-            .depth = toFIXED(11)}};
+            .height = toFIXED(24),
+            .depth = toFIXED(11)},
+        .health = 8};
+
+    hero.hitbox.x = hero.x - (hero.hitbox.width / 2);
+    hero.hitbox.y = hero.y - (hero.hitbox.height / 2);
     herostate = IDLE;
 
+    printDebug = false;
     currentLevel = &level1;
     currentLevelHitboxes = level01Hitboxes;
     currentLevelDynamicHitboxes = level01DynamicHitboxes;
@@ -66,6 +76,10 @@ void update(void)
     case GAMEPLAY:
         updateHero();
         break;
+    case ANIMTEST:
+        camera.x = hero.x;
+        camera.y = hero.y;
+        break;
     default:
         break;
     }
@@ -73,12 +87,12 @@ void update(void)
 
 void jo_main(void)
 {
-    jo_core_init(JO_COLOR_Black);
+    jo_core_init(JO_COLOR_Cyan);
 
-    gamestate = GAMEPLAY;
-    initBackgroundGfx(0);
-    initGameplay();
-    initGameplayCamera();
+    gamestate = MAINMENU;
+    // initBackgroundGfx(0);
+    // initGameplay();
+    // initGameplayCamera();
 
     jo_core_add_callback(handleInput);
     jo_core_add_callback(update);

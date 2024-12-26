@@ -2,6 +2,7 @@
 #include "hero.h"
 #include "input.h"
 #include "vars.h"
+#include "display.h"
 
 void handleGameplayInput()
 {
@@ -60,16 +61,11 @@ void handleGameplayInput()
     // DEBUG
     if (jo_is_pad1_key_down(JO_KEY_L))
     {
-        // hero.speedY = toFIXED(-3);
-        if (currentLevel->currentChunk > 0)
-        {
-            currentLevel->currentChunk = (currentLevel->currentChunk - 1) % level1.chunks;
-        }
+        hero.health--;
     }
     else if (jo_is_pad1_key_down(JO_KEY_R))
     {
-        // hero.speedY = toFIXED(3);
-        currentLevel->currentChunk = (currentLevel->currentChunk + 1) % level1.chunks;
+        hero.health++;
     }
 
     if (jo_is_pad1_key_down(JO_KEY_X))
@@ -99,15 +95,80 @@ void handlePausedInput()
     }
 }
 
+void handleMainMenuInput()
+{
+    if (jo_is_pad1_key_down(JO_KEY_DOWN))
+    {
+        currentSelection = (currentSelection + 1) % 2;
+    }
+    else if (jo_is_pad1_key_down(JO_KEY_UP))
+    {
+        currentSelection = (currentSelection - 1) % 2;
+    }
+
+    if (jo_is_pad1_key_down(JO_KEY_C))
+    {
+        switch (currentSelection)
+        {
+        case 0:
+            initBackgroundGfx(0);
+            initGameplay();
+            initGameplayCamera();
+            gamestate = GAMEPLAY;
+            break;
+        case 1:
+            initBackgroundGfx(0);
+            initGameplay();
+            initGameplayCamera();
+            gamestate = ANIMTEST;
+
+        default:
+            break;
+        }
+    }
+}
+
+void handleAnimtestInput()
+{
+    if (jo_is_pad1_key_pressed(JO_KEY_DOWN))
+    {
+        camera.z -= JO_FIXED_1;
+    }
+    else if (jo_is_pad1_key_pressed(JO_KEY_UP))
+    {
+        camera.z += JO_FIXED_1;
+    }
+
+    if (jo_is_pad1_key_pressed(JO_KEY_LEFT))
+    {
+        hero.rotationY--;
+    }
+    else if (jo_is_pad1_key_pressed(JO_KEY_RIGHT))
+    {
+        hero.rotationY++;
+    }
+
+    if (jo_is_pad1_key_down(JO_KEY_C))
+    {
+        tempSolid = !tempSolid;
+    }
+}
+
 void handleInput()
 {
     switch (gamestate)
     {
+    case MAINMENU:
+        handleMainMenuInput();
+        break;
     case GAMEPLAY:
         handleGameplayInput();
         break;
     case PAUSED:
         handlePausedInput();
+        break;
+    case ANIMTEST:
+        handleAnimtestInput();
         break;
     default:
         break;

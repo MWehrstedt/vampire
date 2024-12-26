@@ -8,7 +8,8 @@
 
 static void (*const level1Geometry[])(void) = {
     display_L1Chk1_mesh,
-    display_L1Chk2_mesh
+    display_L1Chk2_mesh,
+    display_L1Chk3_mesh
 };
 
 

@@ -9,6 +9,9 @@
         "AKI_WALK.C": "cpp",
         "3d.h": "c",
         "sonic.h": "c",
-        "anim_sample.h": "c"
+        "anim_sample.h": "c",
+        "map.h": "c",
+        "conf.h": "c",
+        "MAIN.C": "cpp"
     }
 }

@@ -16,7 +16,7 @@ void updateHero(void)
             hero.speedY += gravity.step;
 
         // static hitboxes
-        for (iterator = 0; iterator < 5; iterator++)
+        for (iterator = 0; iterator < currentLevel->hitboxCount; iterator++)
         {
             collision = (collision_t){
                 .x = detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentLevelHitboxes[iterator].x, currentLevelHitboxes[iterator].y, currentLevelHitboxes[iterator].width, currentLevelHitboxes[iterator].height),
@@ -79,7 +79,7 @@ void updateHero(void)
         }
 
         // dynamic hitboxes
-        for (iterator = 0; iterator < 2; iterator++)
+        for (iterator = 0; iterator < currentLevel->dynamicHitboxCount; iterator++)
         {
             collision = (collision_t){
                 .x = detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentLevelDynamicHitboxes[iterator].x, currentLevelDynamicHitboxes[iterator].y, currentLevelDynamicHitboxes[iterator].width, currentLevelDynamicHitboxes[iterator].height),
@@ -89,7 +89,7 @@ void updateHero(void)
             {
             case DYNAMIC_HITBOX_TYPE_TEMP_SOLID:
 
-                if(!tempSolid)
+                if (!tempSolid)
                     continue;
 
                 // X
@@ -127,6 +127,19 @@ void updateHero(void)
 
                 break;
 
+            case DYNAMIC_HITBOX_TYPE_TEMP_CHUNK:
+                if (collision.x != JO_FIXED_0)
+                {
+                    if (hero.speedX < JO_FIXED_0)
+                    {
+                        currentLevel->currentChunk = currentLevelDynamicHitboxes[iterator].attribute - 1;
+                    }
+                    else if (hero.speedX > JO_FIXED_0)
+                    {
+                        currentLevel->currentChunk = currentLevelDynamicHitboxes[iterator].attribute;
+                    }
+                }
+                break;
             }
         }
 
@@ -142,12 +155,37 @@ void updateHero(void)
         hero.y += hero.speedY;
 
         hero.hitbox.x = hero.x - (hero.hitbox.width / 2);
-        hero.hitbox.y = hero.y - (hero.hitbox.height / 2);
+        hero.hitbox.y = hero.y - (hero.hitbox.height / 2) + toFIXED(3.2);
 
         // hero.z += hero.speedZ;
 
-        camera.x = hero.x;
-        camera.y = hero.y - CAMERA_DEFAULT_OFFSET_Y;
+        // Handle camera boundaries
+
+        if (hero.x < currentLevel->boundaryLeft)
+        {
+            camera.x = currentLevel->boundaryLeft;
+        }
+        else if (hero.x > currentLevel->boundaryRight)
+        {
+            camera.x = currentLevel->boundaryRight;
+        }
+        else
+        {
+            camera.x = hero.x;
+        }
+
+        if (hero.y < currentLevel->boundaryBottom)
+        {
+            camera.y = currentLevel->boundaryBottom - CAMERA_DEFAULT_OFFSET_Y;
+        }
+        else if (hero.y >  currentLevel->boundaryTop)
+        {
+            camera.y = currentLevel->boundaryTop - CAMERA_DEFAULT_OFFSET_Y;
+        }
+        else
+        {
+            camera.y = hero.y - CAMERA_DEFAULT_OFFSET_Y;
+        }
 
         if (hero.speedY != JO_FIXED_0)
         {
