@@ -33,9 +33,9 @@
 #include <jo/jo.h>
 #include "vars.h"
 #include "display.h"
+#include "globalfunctions.h"
 #include "hero.h"
 #include "input.h"
-#include "vars.h"
 
 void initGameplay()
 {
@@ -53,15 +53,20 @@ void initGameplay()
         .currentKeyframe = 0,
         .x = toFIXED(-300),
         .y = toFIXED(-15),
+        .z = toFIXED(5),
         .hitbox = (hitbox_t){
             .width = toFIXED(9),
             .height = toFIXED(24),
             .depth = toFIXED(11)},
-        .health = 8};
+        .health = 8,
+        .isFacingLeft = false};
 
     hero.hitbox.x = hero.x - (hero.hitbox.width / 2);
     hero.hitbox.y = hero.y - (hero.hitbox.height / 2);
     herostate = IDLE;
+    oldHerostate = IDLE;
+
+    heroSetAnimation(&hero, IDLE);
 
     printDebug = false;
     currentLevel = &level1;

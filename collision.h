@@ -11,9 +11,9 @@ static const hitbox_t level01Hitboxes[13] = {
     (hitbox_t){.x = toFIXED(-27.38f), .y = toFIXED(21.7f), .width = toFIXED(112.83f), .height = toFIXED(26.3f), .type = HITBOX_TYPE_SOLID},
     // Chk 2
     (hitbox_t){.x = toFIXED(80.0f), .y = toFIXED(-1.0f), .width = toFIXED(590.43f), .height = toFIXED(38.64f), .type = HITBOX_TYPE_SOLID},
-    (hitbox_t){.x = toFIXED(178.65f), .y = toFIXED(-30.18f), .width = toFIXED(62.56f), .height = toFIXED(8.5f), .type = HITBOX_TYPE_SEMISOLID},
-    (hitbox_t){.x = toFIXED(231.9f), .y = toFIXED(-51.17f), .width = toFIXED(68.66f), .height = toFIXED(21.3f), .type = HITBOX_TYPE_SOLID},
-    (hitbox_t){.x = toFIXED(330.6f), .y = toFIXED(-51.17f), .width = toFIXED(68.66f), .height = toFIXED(21.3f), .type = HITBOX_TYPE_SOLID},
+    (hitbox_t){.x = toFIXED(178.65f), .y = toFIXED(-30.18f), .width = toFIXED(31.64f), .height = toFIXED(8.5f), .type = HITBOX_TYPE_SEMISOLID},
+    (hitbox_t){.x = toFIXED(231.9f), .y = toFIXED(-54.12f), .width = toFIXED(68.66f), .height = toFIXED(21.3f), .type = HITBOX_TYPE_SOLID},
+    (hitbox_t){.x = toFIXED(330.6f), .y = toFIXED(-54.12f), .width = toFIXED(68.66f), .height = toFIXED(21.3f), .type = HITBOX_TYPE_SOLID},
 
     // Chk 3
     (hitbox_t){.x = toFIXED(430.34f), .y = toFIXED(-179.0f), .width = toFIXED(50.0f), .height = toFIXED(139.73f), .type = HITBOX_TYPE_SOLID},
@@ -30,7 +30,7 @@ static const hitbox_t level01Hitboxes[13] = {
 static dynamic_hitbox_t level01DynamicHitboxes[4] = {
     (dynamic_hitbox_t){.x = toFIXED(-26.92f), .y = toFIXED(-1.0f), .width = toFIXED(112.83f), .height = toFIXED(26.3f), .type = DYNAMIC_HITBOX_TYPE_TEMP_SOLID},
     (dynamic_hitbox_t){.x = toFIXED(430.34f), .y = toFIXED(-39.27f), .width = toFIXED(50.0f), .height = toFIXED(45.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_SOLID},
-    (dynamic_hitbox_t){.x = toFIXED(-27.0f), .y = toFIXED(-250.0f), .width = toFIXED(10.0f), .height = toFIXED(500.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_CHUNK, .attribute = 1},
+    (dynamic_hitbox_t){.x = toFIXED(10.0f), .y = toFIXED(-250.0f), .width = toFIXED(10.0f), .height = toFIXED(500.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_CHUNK, .attribute = 1},
     (dynamic_hitbox_t){.x = toFIXED(453.0f), .y = toFIXED(-250.0f), .width = toFIXED(10.0f), .height = toFIXED(500.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_CHUNK, .attribute = 2},
     };
 

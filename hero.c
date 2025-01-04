@@ -2,16 +2,29 @@
 #include "collision.h"
 #include "hero.h"
 #include "vars.h"
+#include "globalfunctions.h"
 
 hero_t hero;
 FIXED jumpHeight = HERO_DEFAULT_VERTICALJUMPSPEED;
 FIXED heroWalkSpeed = HERO_DEFAULT_WALKSPEED;
+
+void handleStateUpdate()
+{
+    if (gamestate != ANIMTEST)
+    {
+        if (oldHerostate != herostate)
+        {
+            heroSetAnimation(&hero, herostate);
+        }
+    }
+}
 
 void updateHero(void)
 {
     switch (gamestate)
     {
     case GAMEPLAY:
+
         if (hero.speedY < gravity.max)
             hero.speedY += gravity.step;
 
@@ -72,6 +85,11 @@ void updateHero(void)
                     if (herostate == JUMP)
                     {
                         herostate = IDLE;
+                        if (herostate == JUMP)
+                        {
+                            herostate = IDLE;
+                            // heroSetAnimation(&hero, HERO_ANIMATION_IDLE_ID);
+                        }
                     }
                 }
                 break;
@@ -117,6 +135,7 @@ void updateHero(void)
                     if (herostate == JUMP)
                     {
                         herostate = IDLE;
+                        // heroSetAnimation(&hero, HERO_ANIMATION_IDLE_ID);
                     }
                 }
                 // from bottom
@@ -174,11 +193,11 @@ void updateHero(void)
             camera.x = hero.x;
         }
 
-        if (hero.y < currentLevel->boundaryBottom)
+        if (hero.y > currentLevel->boundaryBottom)
         {
             camera.y = currentLevel->boundaryBottom - CAMERA_DEFAULT_OFFSET_Y;
         }
-        else if (hero.y >  currentLevel->boundaryTop)
+        else if (hero.y < currentLevel->boundaryTop)
         {
             camera.y = currentLevel->boundaryTop - CAMERA_DEFAULT_OFFSET_Y;
         }
@@ -192,6 +211,7 @@ void updateHero(void)
             hero.isGrounded = false;
         }
 
+        handleStateUpdate();
         break;
     default:
         break;

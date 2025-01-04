@@ -45,24 +45,6 @@ typedef struct
 
 typedef struct
 {
-    FIXED x;
-    FIXED y;
-    FIXED z;
-    int rotationX;
-    int rotationY;
-    int rotationZ;
-    FIXED speedX;
-    FIXED speedY;
-    FIXED speedZ;
-    bool isGrounded;
-    hitbox_t hitbox;
-    int currentKeyframe;
-    FIXED counter;
-    short health;
-} hero_t;
-
-typedef struct
-{
     jo_camera cam;
     FIXED x;
     FIXED y;
@@ -86,74 +68,91 @@ typedef struct
 {
     FIXED startframe;
     FIXED length;
-    FIXED translation[3];
-    short rotation[3];
-    FIXED baseTranslation[3];
-    short baseRotation[3];
-} keyframe_t;
+    FIXED HEAD_translation[3];
+    short HEAD_rotation[3];
+    FIXED L_CALF_translation[3];
+    short L_CALF_rotation[3];
+    FIXED L_FARM_translation[3];
+    short L_FARM_rotation[3];
+    FIXED L_THIGH_translation[3];
+    short L_THIGH_rotation[3];
+    FIXED L_UARM_translation[3];
+    short L_UARM_rotation[3];
+    FIXED LOWER_translation[3];
+    short LOWER_rotation[3];
+    FIXED R_CALF_translation[3];
+    short R_CALF_rotation[3];
+    FIXED R_FARM_translation[3];
+    short R_FARM_rotation[3];
+    FIXED R_THIGH_translation[3];
+    short R_THIGH_rotation[3];
+    FIXED R_UARM_translation[3];
+    short R_UARM_rotation[3];
+    FIXED SHOULDER_translation[3];
+    short SHOULDER_rotation[3];
+    FIXED TORSO_translation[3];
+    short TORSO_rotation[3];
+} anim_hero_keyframe_t;
 
 typedef struct
 {
     FIXED startframe;
     FIXED length;
-    FIXED TORSO_baseTranslation[3];
-    FIXED TORSO_translation[3];
-    short TORSO_baseRotation[3];
-    short TORSO_rotation[3];
-    FIXED SHOULDER_baseTranslation[3];
-    FIXED SHOULDER_translation[3];
-    short SHOULDER_baseRotation[3];
-    short SHOULDER_rotation[3];
-    FIXED R_UARM_baseTranslation[3];
-    FIXED R_UARM_translation[3];
-    short R_UARM_baseRotation[3];
-    short R_UARM_rotation[3];
-    FIXED R_THIGH_baseTranslation[3];
-    FIXED R_THIGH_translation[3];
-    short R_THIGH_baseRotation[3];
-    short R_THIGH_rotation[3];
-    FIXED R_FARM_baseTranslation[3];
-    FIXED R_FARM_translation[3];
-    short R_FARM_baseRotation[3];
-    short R_FARM_rotation[3];
-    FIXED R_CALF_baseTranslation[3];
-    FIXED R_CALF_translation[3];
-    short R_CALF_baseRotation[3];
-    short R_CALF_rotation[3];
-    FIXED LOWER_baseTranslation[3];
-    FIXED LOWER_translation[3];
-    short LOWER_baseRotation[3];
-    short LOWER_rotation[3];
-    FIXED L_UARM_baseTranslation[3];
-    FIXED L_UARM_translation[3];
-    short L_UARM_baseRotation[3];
-    short L_UARM_rotation[3];
-    FIXED L_THIGH_baseTranslation[3];
-    FIXED L_THIGH_translation[3];
-    short L_THIGH_baseRotation[3];
-    short L_THIGH_rotation[3];
-    FIXED L_FARM_baseTranslation[3];
-    FIXED L_FARM_translation[3];
-    short L_FARM_baseRotation[3];
-    short L_FARM_rotation[3];
-    FIXED L_CALF_baseTranslation[3];
-    FIXED L_CALF_translation[3];
-    short L_CALF_baseRotation[3];
-    short L_CALF_rotation[3];
-    FIXED HEAD_baseTranslation[3];
     FIXED HEAD_translation[3];
-    short HEAD_baseRotation[3];
     short HEAD_rotation[3];
-} anim_hero_keyframe_t;
+    FIXED L_CALF_translation[3];
+    short L_CALF_rotation[3];
+    FIXED L_FARM_translation[3];
+    short L_FARM_rotation[3];
+    FIXED L_THIGH_translation[3];
+    short L_THIGH_rotation[3];
+    FIXED L_UARM_translation[3];
+    short L_UARM_rotation[3];
+    FIXED LOWER_translation[3];
+    short LOWER_rotation[3];
+    FIXED R_CALF_translation[3];
+    short R_CALF_rotation[3];
+    FIXED R_FARM_translation[3];
+    short R_FARM_rotation[3];
+    FIXED R_THIGH_translation[3];
+    short R_THIGH_rotation[3];
+    FIXED R_UAM_translation[3];
+    short R_UAM_rotation[3];
+    FIXED SHOULDER_translation[3];
+    short SHOULDER_rotation[3];
+    FIXED TORSO_translation[3];
+    short TORSO_rotation[3];
+} mesh_death_keyframe_t;
 
 typedef struct
 {
     short id;
     bool loop;
     FIXED length;
+    short numberKeyframes;
     const anim_hero_keyframe_t *frames;
     bool play;
 } animation_t;
+
+typedef struct
+{
+    FIXED x;
+    FIXED y;
+    FIXED z;
+    int rotationX;
+    int rotationY;
+    int rotationZ;
+    FIXED speedX;
+    FIXED speedY;
+    FIXED speedZ;
+    bool isGrounded;
+    bool isFacingLeft;
+    hitbox_t hitbox;
+    int currentKeyframe;
+    FIXED counter;
+    short health;
+    const animation_t *currentAnimation;
+} hero_t;
 
 typedef struct
 {

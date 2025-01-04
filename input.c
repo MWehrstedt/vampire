@@ -1,19 +1,32 @@
 #include <jo/jo.h>
+#include "vars.h"
+#include "globalfunctions.h"
 #include "hero.h"
 #include "input.h"
-#include "vars.h"
 #include "display.h"
 
 void handleGameplayInput()
 {
+    oldHerostate = herostate;
 
     // Movement
+
+    // Set state to idle
+    if (herostate != JUMP && !jo_is_pad1_key_pressed(JO_KEY_LEFT) && !jo_is_pad1_key_pressed(JO_KEY_RIGHT))
+    {
+        if (herostate == IDLE || herostate == WALKING)
+        {
+            hero.speedX = JO_FIXED_0;
+            herostate = IDLE;
+        }
+    }
+
     if (jo_is_pad1_key_pressed(JO_KEY_LEFT))
     {
         if (herostate == IDLE || herostate == WALKING)
         {
             hero.speedX = -heroWalkSpeed;
-            hero.rotationY = 180;
+            hero.isFacingLeft = true;
             herostate = WALKING;
         }
     }
@@ -22,16 +35,8 @@ void handleGameplayInput()
         if (herostate == IDLE || herostate == WALKING)
         {
             hero.speedX = heroWalkSpeed;
-            hero.rotationY = 0;
+            hero.isFacingLeft = false;
             herostate = WALKING;
-        }
-    }
-
-    if (herostate != JUMP && !jo_is_pad1_key_pressed(JO_KEY_LEFT) && !jo_is_pad1_key_pressed(JO_KEY_RIGHT))
-    {
-        if (herostate == IDLE || herostate == WALKING)
-        {
-            hero.speedX = JO_FIXED_0;
         }
     }
 
@@ -117,10 +122,10 @@ void handleMainMenuInput()
             gamestate = GAMEPLAY;
             break;
         case 1:
+            gamestate = ANIMTEST;
             initBackgroundGfx(0);
             initGameplay();
             initGameplayCamera();
-            gamestate = ANIMTEST;
 
         default:
             break;
@@ -130,15 +135,6 @@ void handleMainMenuInput()
 
 void handleAnimtestInput()
 {
-    if (jo_is_pad1_key_pressed(JO_KEY_DOWN))
-    {
-        camera.z -= JO_FIXED_1;
-    }
-    else if (jo_is_pad1_key_pressed(JO_KEY_UP))
-    {
-        camera.z += JO_FIXED_1;
-    }
-
     if (jo_is_pad1_key_pressed(JO_KEY_LEFT))
     {
         hero.rotationY--;
@@ -146,6 +142,15 @@ void handleAnimtestInput()
     else if (jo_is_pad1_key_pressed(JO_KEY_RIGHT))
     {
         hero.rotationY++;
+    }
+
+    if (jo_is_pad1_key_down(JO_KEY_UP))
+    {
+        hero.counter += JO_FIXED_1;
+    }
+    else if (jo_is_pad1_key_down(JO_KEY_DOWN))
+    {
+        hero.counter -= JO_FIXED_1;
     }
 
     if (jo_is_pad1_key_down(JO_KEY_C))

@@ -8,8 +8,9 @@ collision_t collision;
 
 int iterator;
 short temp;
-bool tempSolid = true;
-bool printDebug = false;
+bool tempSolid = false;
+bool printDebug = true;
+herostate_e oldHerostate;
 
 /**
  * Graphics and visuals
@@ -48,8 +49,8 @@ level_t level1 = {
     .hitboxCount = 13,
     .dynamicHitboxCount = 4,
     .boundaryLeft = toFIXED(-270),
-    .boundaryBottom = toFIXED(-80),
-    .boundaryTop = toFIXED(20),
+    .boundaryBottom = toFIXED(0),
+    .boundaryTop = toFIXED(-120),
     .boundaryRight = toFIXED(560)};
 
 /**
