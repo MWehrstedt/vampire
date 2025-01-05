@@ -3,9 +3,17 @@ Simple 2D platformer for Sega Saturn. Inspired and close to the original Castlev
 
 # Controls (so far)
 
-**D-Pad**: Move character
+![image](https://onedrive.live.com/embed?resid=72F9E0AC3DFC344D%21588501&authkey=%21AKkSacSQ_k1xCwE&width=660)
 
-**C Button**: Jump
+**D-Pad**: Move character, Crouch
+
+**A, C Button**: Jump
+
+**B Button**: Sword Attack
+
+**X, Y and Z Buttons**: Subweapon
+
+**L and R Button**: Cycle selected subweapon
 
 **Start Button**: Pause game
 
