@@ -33,46 +33,9 @@
 #include <jo/jo.h>
 #include "vars.h"
 #include "display.h"
-#include "globalfunctions.h"
+#include "globalFunctions.h"
 #include "hero.h"
 #include "input.h"
-
-void initGameplay()
-{
-
-    jo_printf(0, 3, "                         ");
-    jo_printf(0, 4, "                         ");
-    jo_printf(0, 5, "                         ");
-    jo_printf(0, 6, "                         ");
-    jo_printf(0, 7, "                         ");
-    jo_printf(0, 8, "                         ");
-    jo_printf(0, 9, "                         ");
-
-    hero = (hero_t){
-        .counter = 0,
-        .currentKeyframe = 0,
-        .x = toFIXED(-300),
-        .y = toFIXED(-15),
-        .z = toFIXED(5),
-        .hitbox = (hitbox_t){
-            .width = toFIXED(9),
-            .height = toFIXED(24),
-            .depth = toFIXED(11)},
-        .health = 8,
-        .isFacingLeft = false};
-
-    hero.hitbox.x = hero.x - (hero.hitbox.width / 2);
-    hero.hitbox.y = hero.y - (hero.hitbox.height / 2);
-    herostate = IDLE;
-    oldHerostate = IDLE;
-
-    heroSetAnimation(&hero, IDLE);
-
-    printDebug = false;
-    currentLevel = &level1;
-    currentLevelHitboxes = level01Hitboxes;
-    currentLevelDynamicHitboxes = level01DynamicHitboxes;
-}
 
 void update(void)
 {
@@ -80,6 +43,7 @@ void update(void)
     {
     case GAMEPLAY:
         updateHero();
+        updateEnemies();
         break;
     case ANIMTEST:
         camera.x = hero.x;
@@ -94,14 +58,18 @@ void jo_main(void)
 {
     jo_core_init(JO_COLOR_Cyan);
 
+    // Reorder screens
+    jo_core_set_screens_order(JO_SPRITE_SCREEN, JO_RBG0_SCREEN, JO_NBG1_SCREEN, JO_NBG0_SCREEN);
+
     gamestate = MAINMENU;
-    // initBackgroundGfx(0);
-    // initGameplay();
-    // initGameplayCamera();
 
     jo_core_add_callback(handleInput);
     jo_core_add_callback(update);
     jo_core_add_callback(draw);
+
+    // jo_core_add_slave_callback(update);
+    // jo_core_add_slave_callback(draw);
+
     jo_core_run();
 }
 

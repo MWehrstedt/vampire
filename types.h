@@ -21,14 +21,19 @@ typedef enum
     DYING
 } herostate_e;
 
+typedef enum
+{
+    E_NORMAL,
+    E_HURT,
+    E_DYING
+} enemystate_e;
+
 typedef struct
 {
     FIXED x;
     FIXED y;
-    FIXED z;
     FIXED width;
     FIXED height;
-    FIXED depth;
     short type;
 } hitbox_t;
 
@@ -36,12 +41,11 @@ typedef struct
 {
     FIXED x;
     FIXED y;
-    FIXED z;
     FIXED width;
     FIXED height;
-    FIXED depth;
     short type;
     short attribute;
+    bool active;
 } dynamic_hitbox_t;
 
 typedef struct
@@ -62,7 +66,6 @@ typedef struct
 {
     FIXED x;
     FIXED y;
-    FIXED z;
 } collision_t;
 
 typedef struct
@@ -142,12 +145,8 @@ typedef struct
     FIXED x;
     FIXED y;
     FIXED z;
-    int rotationX;
-    int rotationY;
-    int rotationZ;
     FIXED speedX;
     FIXED speedY;
-    FIXED speedZ;
     bool isGrounded;
     bool isFacingLeft;
     hitbox_t hitbox;
@@ -155,7 +154,22 @@ typedef struct
     FIXED counter;
     short health;
     const animation_t *currentAnimation;
+    bool playAnimation;
 } hero_t;
+
+typedef struct
+{
+    short type;
+    FIXED x;
+    FIXED y;
+    hitbox_t hitbox;
+    enemystate_e state;
+    short health;
+    bool active;
+    bool isFacingLeft;
+    void (*update)(short idx);
+    void (*draw)(short idx);
+} enemy_t;
 
 typedef struct
 {

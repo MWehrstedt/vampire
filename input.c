@@ -1,6 +1,7 @@
 #include <jo/jo.h>
 #include "vars.h"
-#include "globalfunctions.h"
+#include "globalFunctions.h"
+#include "levels.h"
 #include "hero.h"
 #include "input.h"
 #include "display.h"
@@ -59,7 +60,7 @@ void handleGameplayInput()
     }
 
     // Jump
-    if (jo_is_pad1_key_down(JO_KEY_C))
+    if (jo_is_pad1_key_down(JO_KEY_C) || jo_is_pad1_key_down(JO_KEY_A))
     {
         if (hero.isGrounded && (herostate == IDLE || herostate == WALKING))
         {
@@ -79,34 +80,6 @@ void handleGameplayInput()
     if (jo_is_pad1_key_down(JO_KEY_START))
     {
         gamestate = PAUSED;
-    }
-
-    // DEBUG
-    if (jo_is_pad1_key_down(JO_KEY_L))
-    {
-        hero.health--;
-    }
-    else if (jo_is_pad1_key_down(JO_KEY_R))
-    {
-        hero.health++;
-    }
-
-    if (jo_is_pad1_key_down(JO_KEY_X))
-    {
-        tempSolid = false;
-    }
-    // else if (jo_is_pad1_key_pressed(JO_KEY_Z))
-    // {
-    //     camera.y += JO_FIXED_1;
-    // }
-
-    if (jo_is_pad1_key_pressed(JO_KEY_A))
-    {
-        camera.z -= JO_FIXED_1;
-    }
-    else if (jo_is_pad1_key_pressed(JO_KEY_B))
-    {
-        camera.z += JO_FIXED_1;
     }
 }
 
@@ -134,15 +107,16 @@ void handleMainMenuInput()
         switch (currentSelection)
         {
         case 0:
-            initBackgroundGfx(0);
-            initGameplay();
+            initGraphics(0);
+            initHero();
+            initLevel(0);
             initGameplayCamera();
             gamestate = GAMEPLAY;
             break;
         case 1:
             gamestate = ANIMTEST;
-            initBackgroundGfx(0);
-            initGameplay();
+            initGraphics(0);
+            initHero();
             initGameplayCamera();
 
         default:
@@ -153,27 +127,81 @@ void handleMainMenuInput()
 
 void handleAnimtestInput()
 {
-    if (jo_is_pad1_key_pressed(JO_KEY_LEFT))
-    {
-        hero.rotationY--;
-    }
-    else if (jo_is_pad1_key_pressed(JO_KEY_RIGHT))
-    {
-        hero.rotationY++;
-    }
+    oldDirection = hero.isFacingLeft;
+
+    // if (jo_is_pad1_key_pressed(JO_KEY_LEFT))
+    // {
+    //     //hero.rotationY--;
+    // }
+    // else if (jo_is_pad1_key_pressed(JO_KEY_RIGHT))
+    // {
+    //     //hero.rotationY++;
+    // }
 
     if (jo_is_pad1_key_down(JO_KEY_UP))
     {
-        hero.counter += JO_FIXED_1;
+        camera.z += JO_FIXED_1;
     }
     else if (jo_is_pad1_key_down(JO_KEY_DOWN))
     {
-        hero.counter -= JO_FIXED_1;
+        camera.z -= JO_FIXED_1;
+    }
+
+    if (jo_is_pad1_key_down(JO_KEY_A))
+    {
+        if (!hero.playAnimation)
+        {
+            hero.counter += JO_FIXED_1;
+        }
+    }
+    else if (jo_is_pad1_key_down(JO_KEY_B))
+    {
+        if (!hero.playAnimation)
+        {
+            hero.counter -= JO_FIXED_1;
+        }
     }
 
     if (jo_is_pad1_key_down(JO_KEY_C))
     {
-        tempSolid = !tempSolid;
+        hero.playAnimation = !hero.playAnimation;
+    }
+
+    if (jo_is_pad1_key_down(JO_KEY_L))
+    {
+        if (animTestCurrentCharacter > 0)
+        {
+            --animTestCurrentCharacter;
+        }
+    }
+    else if (jo_is_pad1_key_down(JO_KEY_R))
+    {
+        if (animTestCurrentCharacter < 1)
+        {
+            ++animTestCurrentCharacter;
+        }
+    }
+
+    if (jo_is_pad1_key_down(JO_KEY_Y))
+    {
+        hero.isFacingLeft = !hero.isFacingLeft;
+    }
+
+    if (jo_is_pad1_key_down(JO_KEY_X))
+    {
+        if (animTestCurrentAnimation > 0)
+        {
+            --animTestCurrentAnimation;
+            heroSetAnimation(&hero, (herostate_e)animTestCurrentAnimation);
+        }
+    }
+    else if (jo_is_pad1_key_down(JO_KEY_Z))
+    {
+        if (animTestCurrentAnimation < 5)
+        {
+            ++animTestCurrentAnimation;
+            heroSetAnimation(&hero, (herostate_e)animTestCurrentAnimation);
+        }
     }
 }
 

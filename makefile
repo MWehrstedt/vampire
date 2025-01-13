@@ -9,11 +9,12 @@ JO_PSEUDO_SATURN_KAI_SUPPORT = 1
 JO_COMPILE_WITH_DUAL_CPU_MODULE = 0
 JO_COMPILE_WITH_FAST_BUT_LESS_ACCURATE_MATH = 0
 JO_COMPILE_WITH_SOFTWARE_RENDERER_SUPPORT = 0
+JO_COMPILE_WITH_PRINTF_MODULE = 0
 JO_DEBUG = 1
 
 JO_NTSC = 0
 JO_COMPILE_USING_SGL=1
-SRCS=main.c vars.c display.c input.c hero.c collision.c levels.c
+SRCS=main.c vars.c display.c input.c hero.c collision.c levels.c enemy_zombie.c
 JO_ENGINE_SRC_DIR=../../jo_engine
 COMPILER_DIR=../../Compiler
 include $(COMPILER_DIR)/COMMON/jo_engine_makefile

@@ -84,6 +84,7 @@ const animation_t anim_death = {
     .length = toFIXED(1),
     .loop = true,
     .frames = mesh_death_frames,
-    .play = true};
+    .play = true
+    };
 
 #endif

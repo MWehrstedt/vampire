@@ -27,15 +27,14 @@ static const hitbox_t level01Hitboxes[13] = {
 };
 
 // dynamic level hitboxes
-static dynamic_hitbox_t level01DynamicHitboxes[4] = {
-    (dynamic_hitbox_t){.x = toFIXED(-26.92f), .y = toFIXED(-1.0f), .width = toFIXED(112.83f), .height = toFIXED(26.3f), .type = DYNAMIC_HITBOX_TYPE_TEMP_SOLID},
-    (dynamic_hitbox_t){.x = toFIXED(430.34f), .y = toFIXED(-39.27f), .width = toFIXED(50.0f), .height = toFIXED(45.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_SOLID},
-    (dynamic_hitbox_t){.x = toFIXED(10.0f), .y = toFIXED(-250.0f), .width = toFIXED(10.0f), .height = toFIXED(500.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_CHUNK, .attribute = 1},
-    (dynamic_hitbox_t){.x = toFIXED(453.0f), .y = toFIXED(-250.0f), .width = toFIXED(10.0f), .height = toFIXED(500.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_CHUNK, .attribute = 2},
-    };
-
+static const dynamic_hitbox_t level01DynamicHitboxes[5] = {
+    (dynamic_hitbox_t){.x = toFIXED(-26.92f), .y = toFIXED(-1.0f), .width = toFIXED(112.83f), .height = toFIXED(26.3f), .type = DYNAMIC_HITBOX_TYPE_TEMP_SOLID, .active = true},
+    (dynamic_hitbox_t){.x = toFIXED(430.34f), .y = toFIXED(-39.27f), .width = toFIXED(50.0f), .height = toFIXED(45.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_SOLID, .active = true},
+    (dynamic_hitbox_t){.x = toFIXED(10.0f), .y = toFIXED(-250.0f), .width = toFIXED(10.0f), .height = toFIXED(500.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_CHUNK, .attribute = 1, .active = true},
+    (dynamic_hitbox_t){.x = toFIXED(453.0f), .y = toFIXED(-250.0f), .width = toFIXED(10.0f), .height = toFIXED(500.0f), .type = DYNAMIC_HITBOX_TYPE_TEMP_CHUNK, .attribute = 2, .active = true},
+    (dynamic_hitbox_t){.x = toFIXED(278.53), .y = toFIXED(-83.56f), .width = toFIXED(106.69f), .height = toFIXED(85.0f), .type = DYNAMIC_HITBOX_TYPE_ENEMYSPAWNER, .attribute = 0, .active = true},
+};
 
 FIXED detectCollisionX(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2);
 FIXED detectCollisionY(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2);
-FIXED detectCollision(const FIXED speedX, const FIXED speedY, const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2);
 #endif

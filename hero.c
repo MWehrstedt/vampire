@@ -2,11 +2,34 @@
 #include "collision.h"
 #include "hero.h"
 #include "vars.h"
-#include "globalfunctions.h"
+#include "globalFunctions.h"
 
 hero_t hero;
 FIXED jumpHeight = HERO_DEFAULT_VERTICALJUMPSPEED;
 FIXED heroWalkSpeed = HERO_DEFAULT_WALKSPEED;
+
+void initHero()
+{
+    hero = (hero_t){
+        .counter = 0,
+        .currentKeyframe = 0,
+        .x = toFIXED(-300),
+        .y = toFIXED(-15),
+        .z = toFIXED(5),
+        .hitbox = (hitbox_t){
+            .width = toFIXED(9),
+            .height = toFIXED(24)},
+        .health = 8,
+        .isFacingLeft = false,
+    };
+
+    hero.hitbox.x = hero.x - (hero.hitbox.width / 2);
+    hero.hitbox.y = hero.y - (hero.hitbox.height / 2);
+    herostate = IDLE;
+    oldHerostate = IDLE;
+
+    heroSetAnimation(&hero, IDLE);
+}
 
 void handleStateUpdate()
 {
@@ -99,6 +122,15 @@ void updateHero(void)
         // dynamic hitboxes
         for (iterator = 0; iterator < currentLevel->dynamicHitboxCount; iterator++)
         {
+            // jo_printf(2, 7 + iterator, " %d ", currentLevelDynamicHitboxes[iterator].active);
+
+            // If hitbox is not active, move to next one
+            if (!currentLevelDynamicHitboxes[iterator].active)
+            {
+                // jo_printf(2, 9 + iterator, "not active ");
+                continue;
+            }
+
             collision = (collision_t){
                 .x = detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentLevelDynamicHitboxes[iterator].x, currentLevelDynamicHitboxes[iterator].y, currentLevelDynamicHitboxes[iterator].width, currentLevelDynamicHitboxes[iterator].height),
                 .y = detectCollisionY(hero.hitbox.x, hero.hitbox.y + hero.speedY, hero.hitbox.width, hero.hitbox.height, currentLevelDynamicHitboxes[iterator].x, currentLevelDynamicHitboxes[iterator].y, currentLevelDynamicHitboxes[iterator].width, currentLevelDynamicHitboxes[iterator].height)};
@@ -106,9 +138,6 @@ void updateHero(void)
             switch (currentLevelDynamicHitboxes[iterator].type)
             {
             case DYNAMIC_HITBOX_TYPE_TEMP_SOLID:
-
-                if (!tempSolid)
-                    continue;
 
                 // X
                 // from left
@@ -157,6 +186,12 @@ void updateHero(void)
                     {
                         currentLevel->currentChunk = currentLevelDynamicHitboxes[iterator].attribute;
                     }
+                }
+                break;
+            case DYNAMIC_HITBOX_TYPE_ENEMYSPAWNER:
+                if (collision.x > JO_FIXED_0 && collision.y > JO_FIXED_0 && spawnEnemy(currentLevelDynamicHitboxes[iterator].attribute))
+                {
+                    currentLevelDynamicHitboxes[iterator].active = false;
                 }
                 break;
             }

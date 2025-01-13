@@ -148,11 +148,11 @@ static POLYGON polygon_L1Chk1_2[16] = {
 
 static ATTR attribute_L1Chk1_2[16] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 6, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 6, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 6, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 6, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 6, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
@@ -162,7 +162,7 @@ static ATTR attribute_L1Chk1_2[16] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 6, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
 };
 
 static jo_3d_mesh mesh_L1Chk1_2 = {

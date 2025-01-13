@@ -2,7 +2,7 @@
 #define __DISPLAY_H_
 #include "hero.h"
 #include "vars.h"
-#include "cd/MESHES/lvls_test.h"
+#include "cd/MESHES/levelsTest.h"
 #include "levels.h"
 #include "collision.h"
 
@@ -15,5 +15,6 @@ static void (*const level1Geometry[])(void) = {
 
 void draw();
 void initGameplayCamera();
-void initBackgroundGfx(short levelId);
+void initGraphics(short levelId);
+jo_palette *handlePalette(void);
 #endif
