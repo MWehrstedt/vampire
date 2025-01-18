@@ -11,18 +11,23 @@ Simple 2D platformer for Sega Saturn. Inspired and close to the original Castlev
 
 **B Button**: Sword Attack
 
-**X, Y and Z Buttons**: Subweapon
+**X, Y and Z Buttons**: Subweapon (Not implemented yet)
 
-**L and R Button**: Cycle selected subweapon
+**L and R Button**: Cycle selected subweapon (Not implemented yet)
 
 **Start Button**: Pause game
 
 # Compile
-Make sure to have Jo-Engine set up and working. Then just start `compile.bat` or `compile.sh`.
+Make sure to have [Jo-Engine](https://github.com/johannes-fetz/joengine/tree/e5446a348b05dac91d0a281ad8ea0ca00ec5c5a5) set up and working. Then just start `compile.bat` or `compile.sh`.
 
 # Credits
 
-tbd
+Font: https://not-jam.itch.io/not-jam-old-style-11
+
+UI: https://byandrox.itch.io/crimson-fantasy-gui
+
+Graveyard: https://anokolisa.itch.io/moon-graveyard
+
 
 ## Frameworks
 
