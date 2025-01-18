@@ -4,7 +4,6 @@
 #include "vars.h"
 #include "globalFunctions.h"
 
-hero_t hero;
 FIXED jumpHeight = HERO_DEFAULT_VERTICALJUMPSPEED;
 FIXED heroWalkSpeed = HERO_DEFAULT_WALKSPEED;
 
@@ -15,12 +14,21 @@ void initHero()
         .currentKeyframe = 0,
         .x = toFIXED(-300),
         .y = toFIXED(-15),
-        .z = toFIXED(5),
+        .z = toFIXED(5.5),
         .hitbox = (hitbox_t){
             .width = toFIXED(9),
             .height = toFIXED(24)},
         .health = 8,
         .isFacingLeft = false,
+        .invulnerability = 0,
+        .sword = (dynamic_hitbox_t){
+            .x = JO_FIXED_0,
+            .y = JO_FIXED_0,
+            .width = HERO_DEFAULT_SWORD_HITBOX_WIDTH,
+            .height = HERO_DEFAULT_SWORD_HITBOX_HEIGHT,
+            .active = false,
+        },
+        .swordCounter = 0,
     };
 
     hero.hitbox.x = hero.x - (hero.hitbox.width / 2);
@@ -87,6 +95,11 @@ void updateHero(void)
                     {
                         herostate = IDLE;
                     }
+                    else if (herostate == HIT)
+                    {
+                        herostate = IDLE;
+                        hero.invulnerability = 100;
+                    }
                 }
                 // from bottom
                 else if (collision.y != JO_FIXED_0 && hero.speedY < JO_FIXED_0)
@@ -108,9 +121,10 @@ void updateHero(void)
                     if (herostate == JUMP)
                     {
                         herostate = IDLE;
-                        if (herostate == JUMP)
+                        if (herostate == JUMP || herostate == HIT)
                         {
                             herostate = IDLE;
+                            hero.invulnerability = 100;
                             // heroSetAnimation(&hero, HERO_ANIMATION_IDLE_ID);
                         }
                     }
@@ -166,6 +180,11 @@ void updateHero(void)
                         herostate = IDLE;
                         // heroSetAnimation(&hero, HERO_ANIMATION_IDLE_ID);
                     }
+                    else if (herostate == HIT)
+                    {
+                        herostate = IDLE;
+                        hero.invulnerability = 100;
+                    }
                 }
                 // from bottom
                 else if (collision.y != JO_FIXED_0 && hero.speedY < JO_FIXED_0)
@@ -197,24 +216,69 @@ void updateHero(void)
             }
         }
 
-        // if (herostate == WALKING)
-        // {
-        //     if (hero.speedX > JO_FIXED_0)
-        //         hero.speedX -= friction;
-        //     else if (hero.speedX < JO_FIXED_0)
-        //         hero.speedX += friction;
-        // }
+        // enemy hitboxes
+        if (!hero.invulnerability && herostate != HIT)
+        {
+            for (iterator = 0; iterator < ENEMY_MAX_NUMBER; ++iterator)
+            {
+                if (currentActiveEnemies[iterator].active)
+                {
+                    collision = (collision_t){
+                        .x = detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentActiveEnemies[iterator].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[iterator].hitbox.height),
+                        .y = detectCollisionY(hero.hitbox.x, hero.hitbox.y + hero.speedY, hero.hitbox.width, hero.hitbox.height, currentActiveEnemies[iterator].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[iterator].hitbox.height)};
 
+                    switch (currentActiveEnemies[iterator].type)
+                    {
+                    case ENEMY_TYPE_ZOMBIE:
+                        if (collision.x != JO_FIXED_0 || collision.y != JO_FIXED_0)
+                        {
+                            herostate = HIT;
+                            hero.health--;
+
+                            hero.speedX = hero.isFacingLeft ? toFIXED(HERO_DEFAULT_KNOCKBACK_HORIZONTALSPEED_RAW) : toFIXED(-HERO_DEFAULT_KNOCKBACK_HORIZONTALSPEED_RAW);
+                            hero.speedY = HERO_DEFAULT_KNOCKBACK_VERTICALSPEED;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        // update sword hitbox while attacking
+        if (herostate == ATTACK && hero.swordCounter)
+        {
+            if (hero.swordCounter > HERO_DEFAULT_SWORD_COUNTER - HERO_DEAFULT_SWORD_STARTUP ||
+                hero.swordCounter < HERO_DEAFULT_SWORD_RECOVERY)
+            {
+                hero.sword.active = false;
+            }
+            else
+            {
+                hero.sword.active = true;
+            }
+
+            // Count down and reset state on end
+            if (--(hero.swordCounter) == 0)
+            {
+                herostate = IDLE;
+                hero.sword.active = false;
+            }
+        }
+
+        // If we have an invulnerability timer, update it
+        if (hero.invulnerability > 0)
+        {
+            hero.invulnerability--;
+        }
+
+        // Update hero position
         hero.x += hero.speedX;
         hero.y += hero.speedY;
 
         hero.hitbox.x = hero.x - (hero.hitbox.width / 2);
         hero.hitbox.y = hero.y - (hero.hitbox.height / 2) + toFIXED(3.2);
 
-        // hero.z += hero.speedZ;
-
         // Handle camera boundaries
-
         if (hero.x < currentLevel->boundaryLeft)
         {
             camera.x = currentLevel->boundaryLeft;
@@ -241,6 +305,7 @@ void updateHero(void)
             camera.y = hero.y - CAMERA_DEFAULT_OFFSET_Y;
         }
 
+        // Set grounded flag
         if (hero.speedY != JO_FIXED_0)
         {
             hero.isGrounded = false;

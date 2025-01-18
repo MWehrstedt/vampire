@@ -1,4 +1,4 @@
-/* Model Name: Mesh_Hero_V4 */
+/* Model Name: Mesh_Hero_V4-Opt */
 /* Total Objects : 14 */
 /*
     -Camera
@@ -17,8 +17,8 @@
     -TORSO
 */
 
-#ifndef __3D_MESH_HERO_V4_H__
-#define __3D_MESH_HERO_V4_H__
+#ifndef __3D_MESH_HERO_H__
+#define __3D_MESH_HERO_H__
 
 // HEAD
 static POINT point_HEAD[65] = {
@@ -397,10 +397,10 @@ static __jo_force_inline void display_L_CALF_mesh(void)
 // L_FARM
 static POINT point_L_FARM[34] = {
     {toFIXED(-3.579432), toFIXED(-0.654883), toFIXED(0.146185)},
-    {toFIXED(-3.567194), toFIXED(0.744976), toFIXED(-0.014888)},
+    {toFIXED(-3.568781), toFIXED(0.742182), toFIXED(-0.013731)},
     {toFIXED(-3.567194), toFIXED(-0.667285), toFIXED(-0.425316)},
-    {toFIXED(-3.792357), toFIXED(-0.325764), toFIXED(0.610720)},
-    {toFIXED(-3.585990), toFIXED(0.557562), toFIXED(0.406970)},
+    {toFIXED(-3.790426), toFIXED(-0.328830), toFIXED(0.612668)},
+    {toFIXED(-3.586553), toFIXED(0.554919), toFIXED(0.408238)},
     {toFIXED(-3.567194), toFIXED(0.146661), toFIXED(-0.700769)},
     {toFIXED(-0.155860), toFIXED(-0.688054), toFIXED(0.272694)},
     {toFIXED(-0.108999), toFIXED(0.706733), toFIXED(-0.126484)},
@@ -424,9 +424,9 @@ static POINT point_L_FARM[34] = {
     {toFIXED(3.635927), toFIXED(0.729204), toFIXED(-0.268350)},
     {toFIXED(3.502953), toFIXED(-0.290827), toFIXED(-0.588534)},
     {toFIXED(3.440167), toFIXED(0.362978), toFIXED(-0.799326)},
-    {toFIXED(-1.279149), toFIXED(0.937802), toFIXED(-0.119428)},
-    {toFIXED(-1.584140), toFIXED(0.751678), toFIXED(0.878042)},
-    {toFIXED(-1.501159), toFIXED(-0.428024), toFIXED(1.147089)},
+    {toFIXED(-1.281368), toFIXED(0.940725), toFIXED(-0.121354)},
+    {toFIXED(-1.584584), toFIXED(0.754298), toFIXED(0.876600)},
+    {toFIXED(-1.498277), toFIXED(-0.425065), toFIXED(1.146084)},
     {toFIXED(-1.530390), toFIXED(-0.866450), toFIXED(0.385317)},
     {toFIXED(-1.635689), toFIXED(-0.888973), toFIXED(-0.639677)},
     {toFIXED(-1.737729), toFIXED(0.205798), toFIXED(-0.982232)},
@@ -436,41 +436,41 @@ static POLYGON polygon_L_FARM[31] = {
     {{-0.409467, 0.484490, -0.773050}, {18, 21, 24, 18}},
     {{-0.556122, -0.171012, -0.813316}, {21, 22, 25, 24}},
     {{0.240956, 0.730808, -0.638639}, {15, 21, 18, 12}},
-    {{0.106122, -0.769592, 0.629655}, {28, 1, 5, 33}},
+    {{0.107665, -0.769378, 0.629656}, {28, 1, 5, 33}},
     {{-0.256113, -0.237075, -0.937124}, {10, 16, 15, 9}},
     {{-0.116624, -0.733140, 0.670003}, {11, 17, 13, 7}},
     {{0.430587, 0.314145, 0.846113}, {14, 20, 23, 17}},
     {{-0.192544, -0.953283, -0.232761}, {13, 16, 10, 7}},
     {{-0.319512, 0.262837, 0.910400}, {20, 26, 27, 23}},
-    {{-0.199847, -0.233407, -0.951621}, {29, 10, 9, 30}},
+    {{-0.199635, -0.233928, -0.951538}, {29, 10, 9, 30}},
     {{0.452950, -0.812724, 0.366492}, {17, 23, 19, 13}},
     {{-0.118489, 0.294366, 0.948319}, {14, 17, 11, 8}},
     {{0.108334, 0.993719, -0.028053}, {32, 2, 0, 31}},
-    {{-0.158530, 0.852840, -0.497526}, {30, 9, 6, 31}},
-    {{0.226984, -0.230432, -0.946245}, {30, 3, 4, 29}},
-    {{0.152059, 0.847882, -0.507912}, {31, 0, 3, 30}},
+    {{-0.157684, 0.852159, -0.498959}, {30, 9, 6, 31}},
+    {{0.226326, -0.230301, -0.946434}, {30, 3, 4, 29}},
+    {{0.150573, 0.847923, -0.508286}, {31, 0, 3, 30}},
     {{-0.253568, -0.730514, 0.634076}, {23, 27, 25, 19}},
     {{0.137421, 0.311757, 0.940172}, {33, 5, 2, 32}},
     {{0.277972, 0.955977, -0.094022}, {18, 20, 14, 12}},
     {{-0.139079, 0.990253, 0.007510}, {6, 8, 32, 31}},
     {{-0.953128, 0.029737, 0.301104}, {25, 27, 26, 24}},
     {{-0.411978, 0.904912, 0.106808}, {24, 26, 20, 18}},
-    {{-0.134104, -0.722541, 0.678197}, {33, 11, 7, 28}},
+    {{-0.135293, -0.721025, 0.679573}, {33, 11, 7, 28}},
     {{-0.227544, 0.827099, -0.513936}, {9, 15, 12, 6}},
     {{-0.277364, -0.770694, -0.573673}, {22, 19, 25, 22}},
-    {{-0.188270, -0.953884, -0.233795}, {7, 10, 29, 28}},
+    {{-0.189891, -0.953481, -0.234125}, {7, 10, 29, 28}},
     {{0.233529, -0.068396, -0.969941}, {22, 21, 15, 16}},
     {{-0.177035, 0.983488, 0.037560}, {12, 14, 8, 6}},
     {{-0.118481, 0.289892, 0.949697}, {8, 11, 33, 32}},
     {{0.316804, -0.876982, -0.361301}, {19, 22, 16, 13}},
-    {{0.106911, -0.967259, -0.230174}, {29, 4, 1, 28}},
+    {{0.109048, -0.967094, -0.229865}, {29, 4, 1, 28}},
 };
 
 static ATTR attribute_L_FARM[31] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
@@ -479,14 +479,12 @@ static ATTR attribute_L_FARM[31] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
@@ -497,7 +495,9 @@ static ATTR attribute_L_FARM[31] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(4, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Leather
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
 };
 
 static jo_3d_mesh mesh_L_FARM = {
@@ -538,39 +538,39 @@ static POINT point_L_THIGH[18] = {
 };
 
 static POLYGON polygon_L_THIGH[15] = {
-    {{-0.755739, -0.063526, -0.651785}, {13, 9, 11, 13}},
-    {{0.985502, -0.131774, -0.106871}, {12, 16, 10, 12}},
+    {{-0.763014, -0.075798, -0.641922}, {13, 9, 11, 13}},
+    {{0.983927, -0.143193, -0.106690}, {12, 16, 10, 12}},
     {{-0.640070, 0.691722, -0.334411}, {3, 11, 5, 3}},
-    {{-0.958721, -0.125975, 0.254921}, {8, 14, 11, 9}},
+    {{-0.957826, -0.133454, 0.254478}, {8, 14, 11, 9}},
     {{-0.798138, 0.358455, 0.484237}, {5, 11, 14, 4}},
-    {{-0.400279, -0.116251, -0.908990}, {13, 6, 9, 13}},
-    {{0.977058, -0.151178, -0.150007}, {12, 17, 16, 12}},
-    {{0.902465, -0.138408, 0.407921}, {15, 7, 16, 17}},
+    {{-0.399694, -0.128136, -0.907649}, {13, 6, 9, 13}},
+    {{0.974929, -0.162997, -0.151475}, {12, 17, 16, 12}},
+    {{0.899138, -0.150014, 0.411152}, {15, 7, 16, 17}},
     {{0.921675, -0.008529, 0.387869}, {0, 15, 17, 2}},
     {{0.073056, -0.088456, -0.993397}, {3, 1, 12, 13}},
     {{-0.695994, 0.026260, -0.717567}, {3, 13, 11, 3}},
-    {{-0.327842, -0.093886, 0.940056}, {14, 8, 7, 15}},
+    {{-0.329873, -0.102973, 0.938392}, {14, 8, 7, 15}},
     {{0.932425, -0.026988, -0.360354}, {17, 12, 1, 2}},
-    {{0.276378, -0.126778, -0.952650}, {13, 12, 10, 6}},
+    {{0.268565, -0.136102, -0.953598}, {13, 12, 10, 6}},
     {{-0.171340, 0.134997, 0.975919}, {14, 15, 0, 4}},
 };
 
 static ATTR attribute_L_THIGH[15] = {
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
 };
 
 static jo_3d_mesh mesh_L_THIGH = {
@@ -616,14 +616,14 @@ static POLYGON polygon_L_UARM[8] = {
 };
 
 static ATTR attribute_L_UARM[8] = {
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
 };
 
 static jo_3d_mesh mesh_L_UARM = {
@@ -1067,37 +1067,37 @@ static POINT point_R_THIGH[18] = {
 };
 
 static POLYGON polygon_R_THIGH[14] = {
-    {{0.720426, -0.070608, -0.689928}, {9, 13, 11, 9}},
+    {{0.721168, -0.084526, -0.687585}, {9, 13, 11, 9}},
     {{0.849242, 0.288890, -0.441962}, {11, 3, 5, 11}},
-    {{-0.980221, -0.144536, -0.135191}, {16, 17, 12, 10}},
+    {{-0.978154, -0.156730, -0.136569}, {16, 17, 12, 10}},
     {{0.876197, 0.259245, 0.406289}, {11, 5, 4, 14}},
-    {{0.400279, -0.116251, -0.908990}, {9, 6, 13, 9}},
-    {{0.944424, -0.141776, 0.296584}, {14, 8, 9, 11}},
-    {{-0.902465, -0.138408, 0.407921}, {15, 17, 16, 7}},
+    {{0.399677, -0.128451, -0.907611}, {9, 6, 13, 9}},
+    {{0.942171, -0.150259, 0.299560}, {14, 8, 9, 11}},
+    {{-0.899048, -0.150319, 0.411238}, {15, 17, 16, 7}},
     {{-0.073286, -0.087898, -0.993430}, {3, 13, 12, 1}},
     {{0.710960, 0.029062, -0.702632}, {11, 13, 3, 11}},
-    {{0.327842, -0.093886, 0.940056}, {7, 8, 14, 15}},
+    {{0.329927, -0.103211, 0.938347}, {7, 8, 14, 15}},
     {{-0.932749, -0.025774, -0.359604}, {17, 2, 1, 12}},
-    {{-0.276700, -0.126938, -0.952536}, {12, 13, 6, 10}},
+    {{-0.268668, -0.136504, -0.953512}, {12, 13, 6, 10}},
     {{-0.922041, -0.007421, 0.387022}, {0, 2, 17, 15}},
     {{0.171799, 0.133841, 0.975998}, {14, 4, 0, 15}},
 };
 
 static ATTR attribute_R_THIGH[14] = {
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, No_Palet, No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 0, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight), // Skin
 };
 
 static jo_3d_mesh mesh_R_THIGH = {
@@ -1311,74 +1311,74 @@ static POLYGON polygon_SHOULDER[70] = {
 };
 
 static ATTR attribute_SHOULDER[70] = {
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(14, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Red
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),   // Hair
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(31, 13, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Skin
 };
@@ -1454,26 +1454,26 @@ static POLYGON polygon_TORSO[20] = {
 };
 
 static ATTR attribute_TORSO[20] = {
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(1, 0, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Hair
 };
 
 static jo_3d_mesh mesh_TORSO = {

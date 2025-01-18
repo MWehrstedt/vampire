@@ -48,6 +48,18 @@ void heroSetAnimation(hero_t *target, herostate_e id)
 		else
 			target->currentAnimation = &animationHeroCrouch;
 		break;
+	case HIT:
+		if (target->isFacingLeft)
+			target->currentAnimation = &animationHeroHitLeft;
+		else
+			target->currentAnimation = &animationHeroHit;
+		break;
+	case ATTACK:
+		if (target->isFacingLeft)
+			target->currentAnimation = &animationHeroHitLeft;
+		else
+			target->currentAnimation = &animationHeroAttack;
+		break;
 	default:
 		break;
 	}
@@ -58,358 +70,361 @@ void heroSetAnimation(hero_t *target, herostate_e id)
 void drawHeroAnimation2()
 {
 
-	animation_percent = jo_fixed_div(hero.counter - hero.currentAnimation->frames[hero.currentKeyframe].startframe, hero.currentAnimation->frames[hero.currentKeyframe].length);
-
-	// sword animation;
-	jo_3d_push_matrix();
+	if (!hero.invulnerability || hero.invulnerability % 8 > 4)
 	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_translation[2],
-											 animation_percent));
+		animation_percent = jo_fixed_div(hero.counter - hero.currentAnimation->frames[hero.currentKeyframe].startframe, hero.currentAnimation->frames[hero.currentKeyframe].length);
 
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_rotation[2],
-									animation_percent));
+		// sword animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_translation[2],
+												 animation_percent));
 
-		display_SWORD_mesh();
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SWORD_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SWORD_rotation[2],
+										animation_percent));
+
+			display_SWORD_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// right thigh animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_rotation[2],
+										animation_percent));
+
+			display_R_THIGH_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// right calf animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_rotation[2],
+										animation_percent));
+
+			display_R_CALF_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// left thigh animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_rotation[2],
+										animation_percent));
+
+			display_L_THIGH_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// left calf animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_rotation[2],
+										animation_percent));
+
+			display_L_CALF_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// right uarm animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_rotation[2],
+										animation_percent));
+
+			display_R_UARM_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// right farm animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_rotation[2],
+										animation_percent));
+
+			display_R_FARM_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// left UARM animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_rotation[2],
+										animation_percent));
+
+			display_L_UARM_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// left FARM animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_rotation[2],
+										animation_percent));
+
+			display_L_FARM_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// lower animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_rotation[2],
+										animation_percent));
+
+			display_LOWER_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// torso animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_rotation[2],
+										animation_percent));
+
+			display_TORSO_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// shoulder animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_rotation[2],
+										animation_percent));
+
+			display_SHOULDER_mesh();
+		}
+		jo_3d_pop_matrix();
+
+		// head animation;
+		jo_3d_push_matrix();
+		{
+			jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_translation[0],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_translation[0],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_translation[1],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_translation[1],
+												 animation_percent),
+										 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_translation[2],
+												 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_translation[2],
+												 animation_percent));
+
+			jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_rotation[0],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_rotation[0],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_rotation[1],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_rotation[1],
+										animation_percent),
+								jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_rotation[2],
+										hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_rotation[2],
+										animation_percent));
+
+			display_HEAD_mesh();
+		}
+		jo_3d_pop_matrix();
 	}
-	jo_3d_pop_matrix();
-
-	// right thigh animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_THIGH_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_THIGH_rotation[2],
-									animation_percent));
-
-		display_R_THIGH_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// right calf animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_CALF_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_CALF_rotation[2],
-									animation_percent));
-
-		display_R_CALF_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// left thigh animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_THIGH_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_THIGH_rotation[2],
-									animation_percent));
-
-		display_L_THIGH_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// left calf animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_CALF_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_CALF_rotation[2],
-									animation_percent));
-
-		display_L_CALF_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// right uarm animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_UARM_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_UARM_rotation[2],
-									animation_percent));
-
-		display_R_UARM_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// right farm animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].R_FARM_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].R_FARM_rotation[2],
-									animation_percent));
-
-		display_R_FARM_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// left UARM animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_UARM_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_UARM_rotation[2],
-									animation_percent));
-
-		display_L_UARM_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// left FARM animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].L_FARM_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].L_FARM_rotation[2],
-									animation_percent));
-
-		display_L_FARM_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// lower animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].LOWER_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].LOWER_rotation[2],
-									animation_percent));
-
-		display_LOWER_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// torso animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].TORSO_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].TORSO_rotation[2],
-									animation_percent));
-
-		display_TORSO_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// shoulder animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].SHOULDER_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].SHOULDER_rotation[2],
-									animation_percent));
-
-		display_SHOULDER_mesh();
-	}
-	jo_3d_pop_matrix();
-
-	// head animation;
-	jo_3d_push_matrix();
-	{
-		jo_3d_translate_matrix_fixed(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_translation[0],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_translation[0],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_translation[1],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_translation[1],
-											 animation_percent),
-									 jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_translation[2],
-											 hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_translation[2],
-											 animation_percent));
-
-		jo_3d_rotate_matrix(jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_rotation[0],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_rotation[0],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_rotation[1],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_rotation[1],
-									animation_percent),
-							jo_lerp(hero.currentAnimation->frames[hero.currentKeyframe].HEAD_rotation[2],
-									hero.currentAnimation->frames[hero.currentKeyframe == hero.currentAnimation->numberKeyframes ? hero.currentKeyframe : hero.currentKeyframe + 1].HEAD_rotation[2],
-									animation_percent));
-
-		display_HEAD_mesh();
-	}
-	jo_3d_pop_matrix();
 
 	if (hero.playAnimation)
 	{
@@ -432,8 +447,10 @@ void drawHeroAnimation2()
 			hero.counter = 0;
 			hero.currentKeyframe = 0;
 		}
-
-		return;
+		else
+		{
+			hero.playAnimation = false;
+		}
 	}
 }
 
@@ -814,7 +831,7 @@ void drawGameplay()
 		jo_3d_pop_matrix();
 
 		// Draw enemies
-		for (iterator = 0; iterator < 6; ++iterator)
+		for (iterator = 0; iterator < ENEMY_MAX_NUMBER; ++iterator)
 		{
 			if (currentActiveEnemies[iterator].active)
 			{
@@ -1224,12 +1241,13 @@ void initGameplayPalette()
 
 void initGraphics(short levelId)
 {
+	jo_core_tv_off();
+
 	// Init sprite palette
 	initGameplayPalette();
 
 	// Load sprite/texure packs
 	jo_sprite_add_image_pack("TEX", "HERO.TEX", 0);
-	jo_sprite_add_tga("TEX", "L1WOO.TGA", 1);
 
 	// Load BG
 	if (gamestate != ANIMTEST)
@@ -1243,6 +1261,10 @@ void initGraphics(short levelId)
 			jo_tga_8bits_loader(&backgroundImage, "BG", "BGL1.TGA", 0);
 			jo_vdp2_set_nbg0_8bits_image(&backgroundImage, bgPalette.id, false, true);
 			jo_free_img(&backgroundImage);
+
+			jo_sprite_add_tga("TEX", "L1WOO.TGA", 1);
+			jo_sprite_add_tga("TEX", "LAGRA.TGA", 1);
+			jo_sprite_add_tga("TEX", "LABRI.TGA", 1);
 
 			jo_sprite_add_image_pack("TILES", "L1.TEX", 0);
 			jo_map_load_from_file(0, 300, "MAP", "LVL1.MAP");
@@ -1259,6 +1281,8 @@ void initGraphics(short levelId)
 			break;
 		}
 	}
+
+	jo_core_tv_on();
 }
 
 void draw(void)

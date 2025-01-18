@@ -35,6 +35,7 @@ herostate_e herostate;
 gravity_t gravity = {
     .step = toFIXED(0.15f),
     .max = toFIXED(5)};
+hero_t hero;
 
 const hitbox_t *currentLevelHitboxes;
 dynamic_hitbox_t currentLevelDynamicHitboxes[5];
@@ -56,7 +57,7 @@ level_t level1 = {
     .boundaryRight = toFIXED(560)};
 
 const enemy_t *currentLevelEnemies;
-enemy_t currentActiveEnemies[6];
+enemy_t currentActiveEnemies[ENEMY_MAX_NUMBER];
 /**
  * Menus and options
  */

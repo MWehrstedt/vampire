@@ -11,6 +11,20 @@ void handleGameplayInput()
     oldHerostate = herostate;
     oldDirection = hero.isFacingLeft;
 
+    // Attack
+    if (jo_is_pad1_key_down(JO_KEY_B))
+    {
+        if (hero.isGrounded && (herostate == IDLE || herostate == WALKING))
+        {
+            hero.speedX = 0;
+            hero.sword.x = hero.x + HERO_DEFAULT_SWORD_HITBOX_OFFSET_X;
+            hero.sword.y = hero.y + HERO_DEFAULT_SWORD_HITBOX_OFFSET_Y;
+            hero.swordCounter = HERO_DEFAULT_SWORD_COUNTER;
+
+            herostate = ATTACK;
+        }
+    }
+
     // Movement
     if (herostate == IDLE && jo_is_pad1_key_pressed(JO_KEY_DOWN))
     {
@@ -197,7 +211,7 @@ void handleAnimtestInput()
     }
     else if (jo_is_pad1_key_down(JO_KEY_Z))
     {
-        if (animTestCurrentAnimation < 5)
+        if (animTestCurrentAnimation < 6)
         {
             ++animTestCurrentAnimation;
             heroSetAnimation(&hero, (herostate_e)animTestCurrentAnimation);

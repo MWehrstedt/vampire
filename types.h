@@ -150,7 +150,10 @@ typedef struct
     bool isGrounded;
     bool isFacingLeft;
     hitbox_t hitbox;
+    dynamic_hitbox_t sword;
+    short swordCounter;
     int currentKeyframe;
+    int invulnerability;
     FIXED counter;
     short health;
     const animation_t *currentAnimation;

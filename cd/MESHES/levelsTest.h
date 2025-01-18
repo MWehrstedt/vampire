@@ -10,57 +10,135 @@
 #ifndef __LVLS_TEST_H__
 #define __LVLS_TEST_H__
 // L1CHK1_1
-static POINT point_L1Chk1_1[15] = {
-    {toFIXED(-400.355621), toFIXED(1.037520), toFIXED(-3.747536)},
-    {toFIXED(-400.355591), toFIXED(1.533182), toFIXED(50.004066)},
+static POINT point_L1Chk1_1[45] = {
+    {toFIXED(-400.355621), toFIXED(4.099206), toFIXED(-3.747536)},
+    {toFIXED(-400.355988), toFIXED(1.533182), toFIXED(50.004066)},
     {toFIXED(-400.355621), toFIXED(50.154396), toFIXED(-4.350646)},
-    {toFIXED(-400.355621), toFIXED(40.169960), toFIXED(36.522308)},
     {toFIXED(-69.660233), toFIXED(1.533178), toFIXED(49.811405)},
     {toFIXED(-69.654404), toFIXED(50.154396), toFIXED(-4.350646)},
-    {toFIXED(-69.660194), toFIXED(1.037516), toFIXED(-3.747578)},
-    {toFIXED(-84.304199), toFIXED(1.037516), toFIXED(-3.747576)},
+    {toFIXED(-69.660194), toFIXED(5.046758), toFIXED(-3.747578)},
+    {toFIXED(-84.304199), toFIXED(3.852448), toFIXED(-3.747576)},
     {toFIXED(-84.304199), toFIXED(1.533178), toFIXED(49.811405)},
     {toFIXED(-84.304192), toFIXED(50.154396), toFIXED(-4.350646)},
     {toFIXED(-154.953247), toFIXED(50.154396), toFIXED(-4.350646)},
-    {toFIXED(-154.953262), toFIXED(1.037517), toFIXED(-3.747567)},
+    {toFIXED(-154.336365), toFIXED(4.592723), toFIXED(-3.747567)},
     {toFIXED(-154.953262), toFIXED(1.533179), toFIXED(50.004066)},
-    {toFIXED(-84.304199), toFIXED(1.176229), toFIXED(32.494656)},
-    {toFIXED(-154.953262), toFIXED(1.176230), toFIXED(32.494656)},
+    {toFIXED(-84.304199), toFIXED(1.176229), toFIXED(26.700481)},
+    {toFIXED(-154.953262), toFIXED(1.176229), toFIXED(24.568535)},
+    {toFIXED(-400.355621), toFIXED(1.098778), toFIXED(0.977066)},
+    {toFIXED(-84.304199), toFIXED(1.054659), toFIXED(0.731538)},
+    {toFIXED(-154.953262), toFIXED(1.054660), toFIXED(0.731546)},
+    {toFIXED(-337.330780), toFIXED(50.154396), toFIXED(-4.350647)},
+    {toFIXED(-337.330780), toFIXED(5.949894), toFIXED(-3.747543)},
+    {toFIXED(-340.884094), toFIXED(1.441989), toFIXED(27.203915)},
+    {toFIXED(-337.923004), toFIXED(1.951160), toFIXED(3.283222)},
+    {toFIXED(-283.553009), toFIXED(1.533181), toFIXED(50.004066)},
+    {toFIXED(-283.553009), toFIXED(4.913509), toFIXED(-3.747551)},
+    {toFIXED(-282.960785), toFIXED(1.349018), toFIXED(28.299519)},
+    {toFIXED(-283.553009), toFIXED(2.309808), toFIXED(0.850395)},
+    {toFIXED(-283.553009), toFIXED(50.154396), toFIXED(-4.350647)},
+    {toFIXED(-215.976669), toFIXED(6.320031), toFIXED(-3.747561)},
+    {toFIXED(-215.976669), toFIXED(1.258222), toFIXED(23.206383)},
+    {toFIXED(-215.137680), toFIXED(2.115984), toFIXED(0.787943)},
+    {toFIXED(-215.976669), toFIXED(1.533180), toFIXED(50.004066)},
+    {toFIXED(-215.976669), toFIXED(50.154396), toFIXED(-4.350647)},
+    {toFIXED(-69.660194), toFIXED(4.839481), toFIXED(-3.747578)},
+    {toFIXED(-84.304199), toFIXED(1.054659), toFIXED(0.731538)},
+    {toFIXED(-69.667778), toFIXED(1.176229), toFIXED(23.680157)},
+    {toFIXED(-69.667778), toFIXED(1.054659), toFIXED(0.731538)},
+    {toFIXED(-336.738556), toFIXED(1.183321), toFIXED(7.145256)},
+    {toFIXED(-400.355988), toFIXED(1.482461), toFIXED(26.345196)},
+    {toFIXED(-154.953262), toFIXED(1.087520), toFIXED(8.699698)},
+    {toFIXED(-84.304199), toFIXED(1.087519), toFIXED(9.316990)},
+    {toFIXED(-337.330780), toFIXED(1.533181), toFIXED(50.004066)},
+    {toFIXED(-287.254395), toFIXED(1.149808), toFIXED(7.927703)},
+    {toFIXED(-215.976669), toFIXED(1.117076), toFIXED(5.454028)},
+    {toFIXED(-84.304199), toFIXED(1.087519), toFIXED(0.897748)},
+    {toFIXED(-69.667778), toFIXED(1.087519), toFIXED(2.674408)},
+    {toFIXED(-400.355713), toFIXED(1.202486), toFIXED(4.970202)},
 };
 
-static POLYGON polygon_L1Chk1_1[10] = {
-    {{-1.000000, -0.000000, 0.000000}, {2, 0, 1, 3}},
-    {{-0.000000, -0.012278, -0.999925}, {0, 2, 10, 11}},
-    {{0.000000, -0.999788, 0.020609}, {4, 8, 13, 4}},
-    {{-0.000000, -0.999993, 0.003827}, {11, 7, 13, 14}},
-    {{-0.000000, -0.012277, -0.999925}, {6, 7, 9, 5}},
-    {{-0.000000, -0.012277, -0.999925}, {7, 11, 10, 9}},
-    {{-0.000000, -0.999993, 0.003827}, {7, 6, 13, 7}},
-    {{0.013430, -0.999867, 0.009253}, {6, 4, 13, 6}},
-    {{-0.000000, -0.999993, 0.003827}, {0, 11, 14, 0}},
-    {{-0.000601, -0.999928, 0.011964}, {12, 1, 0, 14}},
+static POLYGON polygon_L1Chk1_1[34] = {
+    {{-0.000190, -0.013492, -0.999909}, {26, 30, 9, 10}},
+    {{0.000171, -0.999991, 0.004258}, {37, 38, 12, 13}},
+    {{0.000538, -0.013194, -0.999913}, {5, 6, 8, 4}},
+    {{-0.000069, -0.013129, -0.999914}, {6, 10, 9, 8}},
+    {{0.007576, -0.999600, -0.027247}, {20, 35, 44, 14}},
+    {{-0.017669, -0.758717, -0.651181}, {16, 28, 26, 10}},
+    {{-0.008127, -0.999423, -0.032990}, {37, 41, 28, 16}},
+    {{-0.004295, -0.816288, -0.577629}, {10, 6, 15, 16}},
+    {{-0.000364, -0.999988, 0.004835}, {19, 39, 1, 36}},
+    {{0.027900, -0.859514, -0.510350}, {20, 14, 0, 18}},
+    {{0.000196, -0.013363, -0.999911}, {0, 2, 17, 18}},
+    {{0.002026, -0.997611, -0.069053}, {40, 35, 20, 24}},
+    {{-0.016566, -0.869128, -0.494309}, {24, 20, 18, 22}},
+    {{-0.000126, -0.999895, 0.014496}, {27, 29, 21, 23}},
+    {{-0.000130, -0.013484, -0.999909}, {18, 17, 25, 22}},
+    {{-0.000931, -0.999949, 0.010052}, {39, 19, 23, 21}},
+    {{-0.002993, -0.997119, -0.075792}, {41, 40, 24, 28}},
+    {{0.006872, -0.801459, -0.598010}, {28, 24, 22, 26}},
+    {{0.000141, -0.013540, -0.999908}, {22, 25, 30, 26}},
+    {{0.000000, 0.000000, 1.000000}, {15, 6, 32, 15}},
+    {{0.000000, 0.000000, 1.000000}, {42, 38, 15, 32}},
+    {{-0.000000, 0.000000, -1.000000}, {6, 5, 31, 6}},
+    {{0.027155, -0.805550, -0.591905}, {34, 32, 6, 31}},
+    {{0.002272, -0.999755, 0.022025}, {12, 33, 3, 7}},
+    {{0.000161, -0.999993, 0.003790}, {42, 43, 33, 12}},
+    {{-0.000871, -0.999840, 0.017850}, {13, 11, 29, 27}},
+    {{-0.000211, -0.999994, 0.003468}, {32, 34, 43, 42}},
+    {{0.000000, 0.000000, 1.000000}, {12, 38, 42, 12}},
+    {{-0.000402, -0.999960, 0.008973}, {27, 23, 40, 41}},
+    {{-0.001376, -0.999935, 0.011329}, {23, 19, 35, 40}},
+    {{-0.001172, -0.999976, 0.006836}, {13, 27, 41, 37}},
+    {{-0.000803, -0.999916, 0.012919}, {35, 19, 36, 44}},
+    {{0.000145, -0.999996, 0.002632}, {16, 15, 38, 37}},
+    {{-0.000309, -0.999747, 0.022509}, {13, 12, 7, 11}},
 };
 
-static ATTR attribute_L1Chk1_1[10] = {
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid.001
+static ATTR attribute_L1Chk1_1[34] = {
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 4, C_RGB(2, 2, 2), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),        // Walk
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 4, C_RGB(2, 2, 2), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),        // Walk
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 4, C_RGB(2, 2, 2), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),        // Walk
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 4, C_RGB(2, 2, 2), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),        // Walk
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 4, C_RGB(2, 2, 2), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),        // Walk
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 4, C_RGB(2, 2, 2), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),        // Walk
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 3, C_RGB(0, 25, 5), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),       // Solid.001
 };
 
 static jo_3d_mesh mesh_L1Chk1_1 = {
     .data =
         {
             point_L1Chk1_1,
-            15,
+            45,
             polygon_L1Chk1_1,
-            10,
+            34,
             attribute_L1Chk1_1,
         }};
 
@@ -70,24 +148,31 @@ static __jo_force_inline void display_L1Chk1_1_mesh(void)
 }
 
 // L1CHK1_1A
-static POINT point_L1Chk1_1a[7] = {
-    {toFIXED(-26.922516), toFIXED(1.037516), toFIXED(-3.747582)},
-    {toFIXED(-26.922516), toFIXED(1.533178), toFIXED(50.004066)},
+static POINT point_L1Chk1_1a[10] = {
+    {toFIXED(-26.922516), toFIXED(4.306483), toFIXED(-3.747582)},
+    {toFIXED(-26.922516), toFIXED(1.533178), toFIXED(45.454678)},
     {toFIXED(-26.922516), toFIXED(50.154396), toFIXED(-4.350646)},
-    {toFIXED(-26.922516), toFIXED(40.169960), toFIXED(36.522308)},
+    {toFIXED(-26.922516), toFIXED(50.680199), toFIXED(45.454678)},
     {toFIXED(-69.660233), toFIXED(1.533178), toFIXED(50.004066)},
     {toFIXED(-69.654404), toFIXED(50.154396), toFIXED(-4.350646)},
-    {toFIXED(-69.660194), toFIXED(1.037516), toFIXED(-3.747578)},
+    {toFIXED(-69.660194), toFIXED(4.306483), toFIXED(-3.747578)},
+    {toFIXED(-26.922516), toFIXED(50.193241), toFIXED(-0.671034)},
+    {toFIXED(-26.922516), toFIXED(1.074135), toFIXED(-0.112524)},
+    {toFIXED(-69.660194), toFIXED(1.074135), toFIXED(0.223589)},
 };
 
-static POLYGON polygon_L1Chk1_1a[3] = {
-    {{1.000000, -0.000000, 0.000000}, {0, 2, 3, 1}},
-    {{-0.000000, -0.999958, 0.009221}, {6, 0, 1, 4}},
-    {{-0.000000, -0.012277, -0.999925}, {0, 6, 5, 2}},
+static POLYGON polygon_L1Chk1_1a[5] = {
+    {{1.000000, -0.000000, 0.000000}, {8, 7, 3, 1}},
+    {{0.000550, -0.999953, 0.009628}, {9, 8, 1, 4}},
+    {{-0.000000, -0.013152, -0.999914}, {0, 6, 5, 2}},
+    {{-0.002547, -0.761966, -0.647612}, {6, 0, 8, 9}},
+    {{1.000000, -0.000000, 0.000000}, {0, 2, 7, 8}},
 };
 
-static ATTR attribute_L1Chk1_1a[3] = {
+static ATTR attribute_L1Chk1_1a[5] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Front
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
 };
@@ -96,9 +181,9 @@ static jo_3d_mesh mesh_L1Chk1_1a = {
     .data =
         {
             point_L1Chk1_1a,
-            7,
+            10,
             polygon_L1Chk1_1a,
-            3,
+            5,
             attribute_L1Chk1_1a,
         }};
 
@@ -148,11 +233,11 @@ static POLYGON polygon_L1Chk1_2[16] = {
 
 static ATTR attribute_L1Chk1_2[16] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB, sprNoflip, UseLight),                       // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB, sprNoflip, UseLight),                       // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB, sprNoflip, UseLight),                       // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB, sprNoflip, UseLight),                       // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB, sprNoflip, UseLight),                       // Wood
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
@@ -162,7 +247,7 @@ static ATTR attribute_L1Chk1_2[16] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(24, 15, 6), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // WoodLight
-    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB | No_Gouraud, sprNoflip, UseLight),   // Wood
+    ATTRIBUTE(Dual_Plane, SORT_CEN, 2, C_RGB(3, 1, 0), CL32KRGB | No_Gouraud, CL32KRGB, sprNoflip, UseLight),                       // Wood
 };
 
 static jo_3d_mesh mesh_L1Chk1_2 = {
@@ -183,21 +268,21 @@ static __jo_force_inline void display_L1Chk1_2_mesh(void)
 // L1CHK1_3
 static POINT point_L1Chk1_3[6] = {
     {toFIXED(-26.890093), toFIXED(50.141743), toFIXED(-4.303096)},
-    {toFIXED(-27.385925), toFIXED(24.298363), toFIXED(50.004066)},
+    {toFIXED(-27.385925), toFIXED(24.298363), toFIXED(45.454678)},
     {toFIXED(-26.890068), toFIXED(23.802696), toFIXED(-4.005099)},
     {toFIXED(80.151230), toFIXED(50.141743), toFIXED(-4.303096)},
-    {toFIXED(82.742188), toFIXED(24.298363), toFIXED(50.004066)},
+    {toFIXED(82.742188), toFIXED(24.298363), toFIXED(45.454678)},
     {toFIXED(80.151230), toFIXED(23.802696), toFIXED(-4.005099)},
 };
 
 static POLYGON polygon_L1Chk1_3[2] = {
-    {{0.000000, -0.999958, 0.009177}, {4, 1, 2, 5}},
+    {{0.000000, -0.999950, 0.010021}, {4, 1, 2, 5}},
     {{0.000000, -0.011313, -0.999936}, {3, 5, 2, 0}},
 };
 
 static ATTR attribute_L1Chk1_3[2] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Front
 };
 
 static jo_3d_mesh mesh_L1Chk1_3 = {
@@ -218,8 +303,8 @@ static __jo_force_inline void display_L1Chk1_3_mesh(void)
 // L1CHK2_1
 static POINT point_L1Chk2_1[6] = {
     {toFIXED(116.952728), toFIXED(1.330000), toFIXED(50.222107)},
-    {toFIXED(117.672729), toFIXED(39.674305), toFIXED(-3.881214)},
-    {toFIXED(116.952728), toFIXED(1.330000), toFIXED(-3.747541)},
+    {toFIXED(117.312729), toFIXED(39.674305), toFIXED(-3.881214)},
+    {toFIXED(117.312729), toFIXED(1.330000), toFIXED(-3.747541)},
     {toFIXED(357.437408), toFIXED(1.330000), toFIXED(50.222080)},
     {toFIXED(357.404510), toFIXED(1.330000), toFIXED(-3.747576)},
     {toFIXED(357.018860), toFIXED(39.674305), toFIXED(-3.881214)},
@@ -231,7 +316,7 @@ static POLYGON polygon_L1Chk2_1[2] = {
 };
 
 static ATTR attribute_L1Chk2_1[2] = {
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Front
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
 };
 
@@ -253,23 +338,23 @@ static __jo_force_inline void display_L1Chk2_1_mesh(void)
 // L1CHK2_1A
 static POINT point_L1Chk2_1a[7] = {
     {toFIXED(80.060516), toFIXED(1.037520), toFIXED(-3.747536)},
-    {toFIXED(80.060577), toFIXED(1.533182), toFIXED(50.004066)},
+    {toFIXED(80.060577), toFIXED(1.533182), toFIXED(45.454678)},
     {toFIXED(80.060516), toFIXED(50.184578), toFIXED(-4.351125)},
-    {toFIXED(80.060516), toFIXED(50.680237), toFIXED(36.355900)},
+    {toFIXED(80.060516), toFIXED(50.680199), toFIXED(45.454678)},
     {toFIXED(116.952728), toFIXED(1.533181), toFIXED(50.004066)},
-    {toFIXED(117.672729), toFIXED(50.184578), toFIXED(-4.351125)},
-    {toFIXED(116.952728), toFIXED(1.037519), toFIXED(-3.747542)},
+    {toFIXED(117.312729), toFIXED(50.184578), toFIXED(-4.351125)},
+    {toFIXED(117.312729), toFIXED(1.037519), toFIXED(-3.747542)},
 };
 
 static POLYGON polygon_L1Chk2_1a[3] = {
     {{-1.000000, -0.000001, 0.000001}, {2, 0, 1, 3}},
     {{-0.000000, -0.012280, -0.999925}, {0, 2, 5, 6}},
-    {{-0.000000, -0.999958, 0.009221}, {0, 6, 4, 1}},
+    {{-0.000591, -0.999954, 0.009626}, {0, 6, 4, 1}},
 };
 
 static ATTR attribute_L1Chk2_1a[3] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Front
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
 };
 
@@ -432,7 +517,7 @@ static POLYGON polygon_L1Chk2_5[2] = {
 
 static ATTR attribute_L1Chk2_5[2] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Front
 };
 
 static jo_3d_mesh mesh_L1Chk2_5 = {
@@ -467,7 +552,7 @@ static POLYGON polygon_L1Chk2_5a[2] = {
 
 static ATTR attribute_L1Chk2_5a[2] = {
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Front
 };
 
 static jo_3d_mesh mesh_L1Chk2_5a = {
@@ -572,25 +657,26 @@ static __jo_force_inline void display_L1Chk3_1a_mesh(void)
 }
 
 // L1CHK3_2
-static POINT point_L1Chk3_2[7] = {
-    {toFIXED(670.952026), toFIXED(1.330000), toFIXED(-3.540569)},
-    {toFIXED(670.952026), toFIXED(1.330000), toFIXED(50.221542)},
+static POINT point_L1Chk3_2[8] = {
+    {toFIXED(670.952026), toFIXED(2.003891), toFIXED(-3.540569)},
     {toFIXED(670.952026), toFIXED(40.061337), toFIXED(-2.970724)},
-    {toFIXED(670.952026), toFIXED(40.553791), toFIXED(49.780788)},
-    {toFIXED(538.260376), toFIXED(1.330000), toFIXED(50.221542)},
+    {toFIXED(603.102783), toFIXED(1.835418), toFIXED(-3.540569)},
+    {toFIXED(536.925781), toFIXED(1.330000), toFIXED(50.221542)},
     {toFIXED(538.031128), toFIXED(40.052597), toFIXED(-3.660999)},
     {toFIXED(538.260376), toFIXED(1.330000), toFIXED(-3.540569)},
+    {toFIXED(603.102783), toFIXED(1.835416), toFIXED(50.215771)},
+    {toFIXED(603.156982), toFIXED(40.056969), toFIXED(-3.315861)},
 };
 
 static POLYGON polygon_L1Chk3_2[3] = {
-    {{1.000000, 0.000000, -0.000000}, {2, 3, 1, 0}},
-    {{-0.000000, -1.000000, 0.000000}, {1, 4, 6, 0}},
-    {{0.002599, 0.005810, -0.999980}, {0, 6, 5, 2}},
+    {{0.002650, 0.001361, -0.999995}, {2, 5, 4, 7}},
+    {{0.002531, 0.010414, -0.999942}, {0, 2, 7, 1}},
+    {{0.007715, -0.999970, 0.000096}, {6, 3, 5, 2}},
 };
 
 static ATTR attribute_L1Chk3_2[3] = {
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight),  // Front
     ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
 };
 
@@ -598,7 +684,7 @@ static jo_3d_mesh mesh_L1Chk3_2 = {
     .data =
         {
             point_L1Chk3_2,
-            7,
+            8,
             polygon_L1Chk3_2,
             3,
             attribute_L1Chk3_2,
@@ -610,42 +696,35 @@ static __jo_force_inline void display_L1Chk3_2_mesh(void)
 }
 
 // L1CHK3_3
-static POINT point_L1Chk3_3[8] = {
-    {toFIXED(602.933960), toFIXED(2.586023), toFIXED(36.947594)},
+static POINT point_L1Chk3_3[7] = {
+    {toFIXED(603.102783), toFIXED(1.835416), toFIXED(50.215771)},
     {toFIXED(602.934021), toFIXED(-115.928680), toFIXED(51.551197)},
-    {toFIXED(670.952332), toFIXED(2.596600), toFIXED(50.210228)},
     {toFIXED(670.952393), toFIXED(-115.928680), toFIXED(51.551205)},
-    {toFIXED(602.933960), toFIXED(2.090357), toFIXED(-3.759752)},
+    {toFIXED(603.102783), toFIXED(1.835418), toFIXED(-3.759752)},
     {toFIXED(602.934021), toFIXED(-116.434929), toFIXED(-2.418770)},
-    {toFIXED(670.952332), toFIXED(2.090358), toFIXED(-3.759748)},
+    {toFIXED(670.952332), toFIXED(2.003891), toFIXED(-3.759748)},
     {toFIXED(670.952393), toFIXED(-116.434929), toFIXED(-2.418766)},
 };
 
-static POLYGON polygon_L1Chk3_3[6] = {
-    {{-0.096821, 0.066798, 0.993058}, {2, 0, 1, 3}},
-    {{1.000000, 0.000001, -0.000000}, {6, 2, 3, 7}},
-    {{0.000000, -0.011313, -0.999936}, {4, 6, 7, 5}},
-    {{-1.000000, -0.000001, 0.000000}, {0, 4, 5, 1}},
-    {{0.000954, 0.999944, -0.010582}, {0, 2, 6, 4}},
-    {{-0.000000, -0.999956, 0.009380}, {5, 7, 3, 1}},
+static POLYGON polygon_L1Chk3_3[3] = {
+    {{0.000014, -0.011329, -0.999936}, {3, 5, 6, 4}},
+    {{-0.999999, 0.001430, -0.000007}, {0, 3, 4, 1}},
+    {{-0.000000, -0.999956, 0.009380}, {4, 6, 2, 1}},
 };
 
-static ATTR attribute_L1Chk3_3[6] = {
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
-    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 25, 3), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Solid
+static ATTR attribute_L1Chk3_3[3] = {
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 7, 0), CL32KRGB | No_Gouraud, CL32KRGB | MESHoff, sprPolygon, UseLight), // Front
 };
 
 static jo_3d_mesh mesh_L1Chk3_3 = {
     .data =
         {
             point_L1Chk3_3,
-            8,
+            7,
             polygon_L1Chk3_3,
-            6,
+            3,
             attribute_L1Chk3_3,
         }};
 

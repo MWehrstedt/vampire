@@ -21,7 +21,7 @@ void initLevel(short levelId)
 
 void initActiveEnemies()
 {
-    for (iterator = 0; iterator < 6; ++iterator)
+    for (iterator = 0; iterator < ENEMY_MAX_NUMBER; ++iterator)
     {
         currentActiveEnemies[iterator].active = false;
         currentActiveEnemies[iterator].health = 0;
@@ -35,7 +35,7 @@ void initActiveEnemies()
 bool spawnEnemy(short idx)
 {
     // find empty slot
-    for (iterator2 = 0; iterator2 < 6; ++iterator2)
+    for (iterator2 = 0; iterator2 < ENEMY_MAX_NUMBER; ++iterator2)
     {
         if (!currentActiveEnemies[iterator2].active)
         {
@@ -63,7 +63,7 @@ void destroyEnemy(short idx)
 
 void updateEnemies()
 {
-    for (iterator = 0; iterator < 6; ++iterator)
+    for (iterator = 0; iterator < ENEMY_MAX_NUMBER; ++iterator)
     {
         if (currentActiveEnemies[iterator].active)
         {
