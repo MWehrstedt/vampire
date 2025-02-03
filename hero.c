@@ -7,17 +7,17 @@
 FIXED jumpHeight = HERO_DEFAULT_VERTICALJUMPSPEED;
 FIXED heroWalkSpeed = HERO_DEFAULT_WALKSPEED;
 
-void initHero()
+void global_initHero()
 {
     hero = (hero_t){
-        .counter = 0,
+        .animationCounter = 0,
         .currentKeyframe = 0,
         .x = toFIXED(-300),
         .y = toFIXED(-15),
         .z = toFIXED(5.5),
         .hitbox = (hitbox_t){
-            .width = toFIXED(9),
-            .height = toFIXED(24)},
+            .width = HERO_DEFAULT_HITBOX_STANDING_WIDTH,
+            .height = HERO_DEFAULT_HITBOX_STANDING_HEIGHT},
         .health = 8,
         .isFacingLeft = false,
         .invulnerability = 0,
@@ -33,24 +33,24 @@ void initHero()
 
     hero.hitbox.x = hero.x - (hero.hitbox.width / 2);
     hero.hitbox.y = hero.y - (hero.hitbox.height / 2);
-    herostate = IDLE;
+    hero.state = IDLE;
     oldHerostate = IDLE;
 
-    heroSetAnimation(&hero, IDLE);
+    global_SetHeroAnimation(&hero, IDLE);
 }
 
-void handleStateUpdate()
+void hero_handleStateUpdate()
 {
     if (gamestate != ANIMTEST)
     {
-        if (oldHerostate != herostate || oldDirection != hero.isFacingLeft)
+        if (oldHerostate != hero.state || oldDirection != hero.isFacingLeft)
         {
-            heroSetAnimation(&hero, herostate);
+            global_SetHeroAnimation(&hero, hero.state);
         }
     }
 }
 
-void updateHero(void)
+void hero_updateHero(void)
 {
     switch (gamestate)
     {
@@ -63,8 +63,8 @@ void updateHero(void)
         for (iterator = 0; iterator < currentLevel->hitboxCount; iterator++)
         {
             collision = (collision_t){
-                .x = detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentLevelHitboxes[iterator].x, currentLevelHitboxes[iterator].y, currentLevelHitboxes[iterator].width, currentLevelHitboxes[iterator].height),
-                .y = detectCollisionY(hero.hitbox.x, hero.hitbox.y + hero.speedY, hero.hitbox.width, hero.hitbox.height, currentLevelHitboxes[iterator].x, currentLevelHitboxes[iterator].y, currentLevelHitboxes[iterator].width, currentLevelHitboxes[iterator].height)};
+                .x = collisions_detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentLevelHitboxes[iterator].x, currentLevelHitboxes[iterator].y, currentLevelHitboxes[iterator].width, currentLevelHitboxes[iterator].height),
+                .y = collisions_detectCollisionY(hero.hitbox.x, hero.hitbox.y + hero.speedY, hero.hitbox.width, hero.hitbox.height, currentLevelHitboxes[iterator].x, currentLevelHitboxes[iterator].y, currentLevelHitboxes[iterator].width, currentLevelHitboxes[iterator].height)};
 
             switch (currentLevelHitboxes[iterator].type)
             {
@@ -91,13 +91,13 @@ void updateHero(void)
                     // assume hero is grounded
                     hero.isGrounded = true;
 
-                    if (herostate == JUMP)
+                    if (hero.state == JUMP)
                     {
-                        herostate = IDLE;
+                        hero.state = IDLE;
                     }
-                    else if (herostate == HIT)
+                    else if (hero.state == HIT)
                     {
-                        herostate = IDLE;
+                        hero.state = IDLE;
                         hero.invulnerability = 100;
                     }
                 }
@@ -118,12 +118,12 @@ void updateHero(void)
                     // assume hero is grounded
                     hero.isGrounded = true;
 
-                    if (herostate == JUMP)
+                    if (hero.state == JUMP)
                     {
-                        herostate = IDLE;
-                        if (herostate == JUMP || herostate == HIT)
+                        hero.state = IDLE;
+                        if (hero.state == JUMP || hero.state == HIT)
                         {
-                            herostate = IDLE;
+                            hero.state = IDLE;
                             hero.invulnerability = 100;
                             // heroSetAnimation(&hero, HERO_ANIMATION_IDLE_ID);
                         }
@@ -146,8 +146,8 @@ void updateHero(void)
             }
 
             collision = (collision_t){
-                .x = detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentLevelDynamicHitboxes[iterator].x, currentLevelDynamicHitboxes[iterator].y, currentLevelDynamicHitboxes[iterator].width, currentLevelDynamicHitboxes[iterator].height),
-                .y = detectCollisionY(hero.hitbox.x, hero.hitbox.y + hero.speedY, hero.hitbox.width, hero.hitbox.height, currentLevelDynamicHitboxes[iterator].x, currentLevelDynamicHitboxes[iterator].y, currentLevelDynamicHitboxes[iterator].width, currentLevelDynamicHitboxes[iterator].height)};
+                .x = collisions_detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentLevelDynamicHitboxes[iterator].x, currentLevelDynamicHitboxes[iterator].y, currentLevelDynamicHitboxes[iterator].width, currentLevelDynamicHitboxes[iterator].height),
+                .y = collisions_detectCollisionY(hero.hitbox.x, hero.hitbox.y + hero.speedY, hero.hitbox.width, hero.hitbox.height, currentLevelDynamicHitboxes[iterator].x, currentLevelDynamicHitboxes[iterator].y, currentLevelDynamicHitboxes[iterator].width, currentLevelDynamicHitboxes[iterator].height)};
 
             switch (currentLevelDynamicHitboxes[iterator].type)
             {
@@ -175,14 +175,14 @@ void updateHero(void)
                     // assume hero is grounded
                     hero.isGrounded = true;
 
-                    if (herostate == JUMP)
+                    if (hero.state == JUMP)
                     {
-                        herostate = IDLE;
+                        hero.state = IDLE;
                         // heroSetAnimation(&hero, HERO_ANIMATION_IDLE_ID);
                     }
-                    else if (herostate == HIT)
+                    else if (hero.state == HIT)
                     {
-                        herostate = IDLE;
+                        hero.state = IDLE;
                         hero.invulnerability = 100;
                     }
                 }
@@ -208,7 +208,7 @@ void updateHero(void)
                 }
                 break;
             case DYNAMIC_HITBOX_TYPE_ENEMYSPAWNER:
-                if (collision.x > JO_FIXED_0 && collision.y > JO_FIXED_0 && spawnEnemy(currentLevelDynamicHitboxes[iterator].attribute))
+                if (collision.x > JO_FIXED_0 && collision.y > JO_FIXED_0 && global_spawnEnemy(currentLevelDynamicHitboxes[iterator].attribute))
                 {
                     currentLevelDynamicHitboxes[iterator].active = false;
                 }
@@ -217,22 +217,22 @@ void updateHero(void)
         }
 
         // enemy hitboxes
-        if (!hero.invulnerability && herostate != HIT)
+        if (!hero.invulnerability && hero.state != HIT)
         {
             for (iterator = 0; iterator < ENEMY_MAX_NUMBER; ++iterator)
             {
                 if (currentActiveEnemies[iterator].active)
                 {
                     collision = (collision_t){
-                        .x = detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentActiveEnemies[iterator].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[iterator].hitbox.height),
-                        .y = detectCollisionY(hero.hitbox.x, hero.hitbox.y + hero.speedY, hero.hitbox.width, hero.hitbox.height, currentActiveEnemies[iterator].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[iterator].hitbox.height)};
+                        .x = collisions_detectCollisionX(hero.hitbox.x + hero.speedX, hero.hitbox.y, hero.hitbox.width, hero.hitbox.height, currentActiveEnemies[iterator].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[iterator].hitbox.height),
+                        .y = collisions_detectCollisionY(hero.hitbox.x, hero.hitbox.y + hero.speedY, hero.hitbox.width, hero.hitbox.height, currentActiveEnemies[iterator].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[iterator].hitbox.height)};
 
                     switch (currentActiveEnemies[iterator].type)
                     {
                     case ENEMY_TYPE_ZOMBIE:
                         if (collision.x != JO_FIXED_0 || collision.y != JO_FIXED_0)
                         {
-                            herostate = HIT;
+                            hero.state = HIT;
                             hero.health--;
 
                             hero.speedX = hero.isFacingLeft ? toFIXED(HERO_DEFAULT_KNOCKBACK_HORIZONTALSPEED_RAW) : toFIXED(-HERO_DEFAULT_KNOCKBACK_HORIZONTALSPEED_RAW);
@@ -245,7 +245,7 @@ void updateHero(void)
         }
 
         // update sword hitbox while attacking
-        if (herostate == ATTACK && hero.swordCounter)
+        if (hero.state == ATTACK && hero.swordCounter)
         {
             if (hero.swordCounter > HERO_DEFAULT_SWORD_COUNTER - HERO_DEAFULT_SWORD_STARTUP ||
                 hero.swordCounter < HERO_DEAFULT_SWORD_RECOVERY)
@@ -260,7 +260,7 @@ void updateHero(void)
             // Count down and reset state on end
             if (--(hero.swordCounter) == 0)
             {
-                herostate = IDLE;
+                hero.state = IDLE;
                 hero.sword.active = false;
             }
         }
@@ -311,7 +311,7 @@ void updateHero(void)
             hero.isGrounded = false;
         }
 
-        handleStateUpdate();
+        hero_handleStateUpdate();
         break;
     default:
         break;

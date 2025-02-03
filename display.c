@@ -12,14 +12,14 @@
 #include "cd/ANIMS/animationsHero.h"
 #include "cd/ANIMS/animationsDeath.h"
 
-jo_palette palette;
+jo_palette hudPalette;
 jo_palette bgPalette;
-int c = 0;
+jo_palette fontPalette;
 
-void heroSetAnimation(hero_t *target, herostate_e id)
+void global_SetHeroAnimation(hero_t *target, herostate_e id)
 {
 
-	target->counter = 0;
+	target->animationCounter = 0;
 	target->currentKeyframe = 0;
 
 	switch (id)
@@ -56,7 +56,7 @@ void heroSetAnimation(hero_t *target, herostate_e id)
 		break;
 	case ATTACK:
 		if (target->isFacingLeft)
-			target->currentAnimation = &animationHeroHitLeft;
+			target->currentAnimation = &animationHeroAttackLeft;
 		else
 			target->currentAnimation = &animationHeroAttack;
 		break;
@@ -67,12 +67,48 @@ void heroSetAnimation(hero_t *target, herostate_e id)
 	target->playAnimation = target->currentAnimation->play;
 }
 
-void drawHeroAnimation2()
+void global_printText(const char *message, const int x, const int y, const int z)
+{
+	for (iteratorText = 0; iteratorText < jo_strlen(message); iteratorText++)
+	{
+		if (message[iteratorText] == 45)
+		{
+			textSpriteOffset = 0;
+		}
+		else if (message[iteratorText] >= 48 && message[iteratorText] <= 57)
+		{
+			textSpriteOffset = message[iteratorText] - 48;
+		}
+		else if (message[iteratorText] == 60)
+		{
+			textSpriteOffset = 11;
+		}
+		else if (message[iteratorText] == 62)
+		{
+			textSpriteOffset = 12;
+		}
+		else if (message[iteratorText] >= 65 && message[iteratorText] < 97)
+		{
+			textSpriteOffset = message[iteratorText] - 52;
+		}
+		else if (message[iteratorText] >= 97)
+		{
+			textSpriteOffset = message[iteratorText] - 58;
+		}
+
+		if (message[iteratorText] != 32)
+		{
+			jo_sprite_draw3D2(imageTextCharacters + textSpriteOffset, x + (iteratorText * 8), y, z);
+		}
+	}
+}
+
+void display_drawHeroAnimation()
 {
 
 	if (!hero.invulnerability || hero.invulnerability % 8 > 4)
 	{
-		animation_percent = jo_fixed_div(hero.counter - hero.currentAnimation->frames[hero.currentKeyframe].startframe, hero.currentAnimation->frames[hero.currentKeyframe].length);
+		animation_percent = jo_fixed_div(hero.animationCounter - hero.currentAnimation->frames[hero.currentKeyframe].startframe, hero.currentAnimation->frames[hero.currentKeyframe].length);
 
 		// sword animation;
 		jo_3d_push_matrix();
@@ -428,28 +464,30 @@ void drawHeroAnimation2()
 
 	if (hero.playAnimation)
 	{
-		hero.counter += JO_FIXED_1;
-	}
 
-	// Increase counter and check if we reached the last frame of the current keyframe
-	if (hero.counter == (hero.currentAnimation->frames[hero.currentKeyframe].startframe + hero.currentAnimation->frames[hero.currentKeyframe].length))
-	{
-		// Increase the current keyframe
-		hero.currentKeyframe++;
-		// count++;
-	}
+		hero.animationCounter += JO_FIXED_1;
 
-	/* Check if we reached the last frame for the animation. If so, loop if animation is looped */
-	if (hero.counter == hero.currentAnimation->length)
-	{
-		if (hero.currentAnimation->loop)
+		/* Check if we reached the last frame for the animation. If so, loop if animation is looped */
+		if (hero.animationCounter == hero.currentAnimation->length)
 		{
-			hero.counter = 0;
-			hero.currentKeyframe = 0;
+			if (hero.currentAnimation->loop)
+			{
+				hero.animationCounter = 0;
+				hero.currentKeyframe = 0;
+				return;
+			}
+			else
+			{
+				hero.playAnimation = false;
+				return;
+			}
 		}
-		else
+
+		// Increase animationCounter and check if we reached the last frame of the current keyframe
+		if (hero.animationCounter == (hero.currentAnimation->frames[hero.currentKeyframe].startframe + hero.currentAnimation->frames[hero.currentKeyframe].length))
 		{
-			hero.playAnimation = false;
+			// Increase the current keyframe
+			hero.currentKeyframe++;
 		}
 	}
 }
@@ -457,7 +495,7 @@ void drawHeroAnimation2()
 void drawDeathAnimation()
 {
 
-	animation_percent = jo_fixed_div(hero.counter - hero.currentAnimation->frames[hero.currentKeyframe].startframe, hero.currentAnimation->frames[hero.currentKeyframe].length);
+	animation_percent = jo_fixed_div(hero.animationCounter - hero.currentAnimation->frames[hero.currentKeyframe].startframe, hero.currentAnimation->frames[hero.currentKeyframe].length);
 
 	// right thigh animation;
 	jo_3d_push_matrix();
@@ -785,22 +823,22 @@ void drawDeathAnimation()
 
 	if (hero.playAnimation)
 	{
-		hero.counter += JO_FIXED_1;
+		hero.animationCounter += JO_FIXED_1;
 	}
 
-	// Increase counter and check if we reached the last frame of the current keyframe
-	if (hero.counter == (hero.currentAnimation->frames[hero.currentKeyframe].startframe + hero.currentAnimation->frames[hero.currentKeyframe].length))
+	// Increase animationCounter and check if we reached the last frame of the current keyframe
+	if (hero.animationCounter == (hero.currentAnimation->frames[hero.currentKeyframe].startframe + hero.currentAnimation->frames[hero.currentKeyframe].length))
 	{
 		// Increase the current keyframe
 		hero.currentKeyframe++;
 	}
 
 	/* Check if we reached the last frame for the animation. If so, loop if animation is looped */
-	if (hero.counter == hero.currentAnimation->length)
+	if (hero.animationCounter == hero.currentAnimation->length)
 	{
 		if (hero.currentAnimation->loop)
 		{
-			hero.counter = JO_FIXED_0;
+			hero.animationCounter = JO_FIXED_0;
 			hero.currentKeyframe = JO_FIXED_0;
 		}
 
@@ -808,25 +846,22 @@ void drawDeathAnimation()
 	}
 }
 
-void drawGameplay()
+void display_drawGameplay()
 {
 	jo_3d_camera_look_at(&camera.cam);
 
-	jo_sprite_set_palette(palette.id);
+	jo_sprite_set_palette(hudPalette.id);
 
 	jo_3d_push_matrix();
 	{
 		jo_3d_translate_matrix_fixed(-camera.x, -camera.y, -camera.z);
-
-		// drawHeroAnimation();
-
 		currentLevel->display_geometry[currentLevel->currentChunk]();
 
 		// Draw hero
 		jo_3d_push_matrix();
 		{
 			jo_3d_translate_matrix_fixed(hero.x, hero.y, hero.z);
-			drawHeroAnimation2();
+			display_drawHeroAnimation();
 		}
 		jo_3d_pop_matrix();
 
@@ -841,18 +876,6 @@ void drawGameplay()
 	}
 	jo_3d_pop_matrix();
 
-	// Draw enemies
-
-	/* Changes:
-		- try jo_vdp2_clear_bitmap_nbg1(JO_COLOR_Black);
-		- try jo_vdp2_map_draw_nbg1(WORLD_MAP_ID, map_pos_x, map_pos_y);
-		Might be slow, so just try and draw it on init once
-		It is.
-	*/
-
-	// jo_map_draw(0, JO_FIXED_TO_INT(camera.x), 0);
-	//
-
 	// Draw HUD on SPR0 because jo
 	jo_sprite_draw3D2(imageHUDBackgroundId, 12, 14, 40);
 
@@ -865,68 +888,43 @@ void drawGameplay()
 	// jo_sprite_draw3D2(imageHUDSWeaponTwo, HUD_SWEAPON_ONE_Y, HUD_HEALTH_OFFSET_Y, 30);
 	// jo_sprite_draw3D2(imageHUDSWeaponThree, HUD_SWEAPON_ONE_Z, HUD_HEALTH_OFFSET_Y, 30);
 
-	// jo_printf(0, 0, "Sprite memory usage: %d%% ", jo_sprite_usage_percent());
 
-	if (printDebug)
-	{
-		// jo_printf(0, 3, "Position :  %d ; %d ; %d ", jo_fixed2int(hero.x), jo_fixed2int(hero.y), jo_fixed2int(hero.z));
-		// jo_printf(0, 4, "camera :  %d ; %d ; %d ", jo_fixed2int(camera.x), jo_fixed2int(camera.y), jo_fixed2int(camera.z));
-		// jo_printf(0, 5, "isGrounded :  %d  ", hero.isGrounded);
-		// jo_printf(0, 8, "hitbox :  %d ; %d ; %d ", jo_fixed2int(hero.hitbox.x), jo_fixed2int(hero.hitbox.y), 0);
-		// jo_printf(0, 9, "speedX :  %d ", jo_fixed2int(hero.speedX));
-
-		// jo_printf(0, 11, "current Chunk :  %d ", currentLevel->currentChunk);
-		// jo_printf(0, 12, "chunks :  %d ", currentLevel->chunks);
-		// jo_printf(0, 13, "tempSolid :  %d ", tempSolid ? 1 : 0);
-
-		// //jo_printf(0, 3, "Position :  %d ; %d ; %d ", jo_fixed2int(hero.x), jo_fixed2int(hero.y), jo_fixed2int(hero.z));
-		// //jo_printf(0, 4, "Current keyframe :  %d     ", hero.currentKeyframe);
-		// //jo_printf(0, 5, "Counter :  %d    ", jo_fixed2int(hero.counter));
-		// //jo_printf(0, 6, "Animation length :  %d", jo_fixed2int(anim_hero.length));
-		// //jo_printf(0, 8, "Keyframe length :  %d    ", jo_fixed2int(hero.currentAnimation->frames[hero.currentKeyframe].length));
-		// //jo_printf(0, 9, "Keyframe start frame :  %d     ", jo_fixed2int(hero.currentAnimation->frames[hero.currentKeyframe].startframe));
-		// //jo_printf(0, 10, "Keyframe end frame :  %d     ", jo_fixed2int(hero.currentAnimation->frames[hero.currentKeyframe].startframe + hero.currentAnimation->frames[hero.currentKeyframe].length));
-		// //jo_printf(0, 11, "pc :  %d    ", count);
-		// //jo_printf(0, 12, "Animation percent :  %d     ", jo_fixed2int(jo_fixed_mult(animation_percent, toFIXED(100))));
-	}
 }
 
 void drawPaused()
 {
-	// jo_printf(0, 3, "                         ");
-	// jo_printf(0, 4, "                         ");
-	// jo_printf(0, 5, "    --- PAUSED ---       ");
-	// jo_printf(0, 6, "                         ");
-	// jo_printf(0, 7, "                         ");
-	// jo_printf(0, 8, "                         ");
-	// jo_printf(0, 9, "                         ");
+	jo_3d_camera_look_at(&camera.cam);
+
+	jo_3d_push_matrix();
+	{
+		jo_3d_translate_matrix_fixed(-camera.x, -camera.y, -camera.z);
+
+		currentLevel->display_geometry[currentLevel->currentChunk]();
+
+		jo_sprite_set_palette(fontPalette.id);
+		global_printText("PAUSE", 120, 80, 300);
+	}
+	jo_3d_pop_matrix();
 }
 
 void drawMainMenu()
 {
-	// jo_printf(0, 3, "                         ");
-	// jo_printf(0, 4, "    PROJECT BFS          ");
-	// jo_printf(0, 5, "                         ");
+	jo_sprite_set_palette(fontPalette.id);
+
+	global_printText("PROJECT BFS", 116, 54, 300);
 
 	if (currentSelection == 0)
 	{
-		// jo_printf(0, 6, "   > GAMEPLAY        ");
+		global_printText("<    GAMEPLAY    >", 91, 116, 300);
+		global_printText("  ANIMATION TEST  ", 91, 140, 300);
 	}
-	else
+	else if (currentSelection == 1)
 	{
-		// jo_printf(0, 6, "     GAMEPLAY        ");
+		global_printText("     GAMEPLAY     ", 91, 116, 300);
+		global_printText("< ANIMATION TEST >", 91, 140, 300);
 	}
 
-	if (currentSelection == 1)
-	{
-		// jo_printf(0, 7, "   > ANIMATION TEST      ");
-	}
-	else
-	{
-		// jo_printf(0, 7, "     ANIMATION TEST  ");
-	}
-	// jo_printf(0, 8, "                         ");
-	// jo_printf(0, 9, "                         ");
+	global_printText("ab - cd - ef", 100, 200, 300);
 }
 
 void drawAnimtest()
@@ -942,7 +940,7 @@ void drawAnimtest()
 
 		if (animTestCurrentCharacter == 0)
 		{
-			drawHeroAnimation2();
+			display_drawHeroAnimation();
 		}
 		else if (animTestCurrentCharacter == 1)
 		{
@@ -951,9 +949,9 @@ void drawAnimtest()
 	}
 	jo_3d_pop_matrix();
 
-	// //jo_printf(0, 3, "Animation :  %d - %d - %d     ", hero.currentAnimation->id, hero.currentAnimation->loop, hero.playAnimation);
+	// jo_printf(0, 3, "Animation :  %d - %d - %d     ", hero.currentAnimation->id, hero.currentAnimation->loop, hero.playAnimation);
 	// //jo_printf(0, 4, "Counter :  %d / %d - %d      ",
-	// 		  jo_fixed2int(hero.counter),
+	// 		  jo_fixed2int(hero.animationCounter),
 	// 		  jo_fixed2int(hero.currentAnimation->length),
 	// 		  jo_fixed2int(jo_fixed_mult(animation_percent, toFIXED(100))));
 	// //jo_printf(0, 5, "Keyframe:  %d - %d - %d      ",
@@ -963,7 +961,7 @@ void drawAnimtest()
 	// //jo_printf(0, 6, "Palette:  %d      ", palette.id);
 }
 
-void initGameplayCamera()
+void display_initGameplayCamera()
 {
 	camera.x = JO_FIXED_0;
 	camera.y = toFIXED(0);
@@ -982,34 +980,34 @@ void initGameplayPalette()
 	jo_set_tga_palette_handling(JO_NULL);
 
 	// Sprite palettes
-	jo_create_palette(&palette);
-	palette.data[0] = JO_COLOR_RGB(247, 105, 208);
-	palette.data[1] = JO_COLOR_RGB(64, 64, 64);
-	palette.data[2] = JO_COLOR_RGB(56, 56, 56);
-	palette.data[3] = JO_COLOR_RGB(211, 88, 0);
-	palette.data[4] = JO_COLOR_RGB(21, 11, 107);
+	jo_create_palette(&hudPalette);
+	hudPalette.data[0] = JO_COLOR_RGB(247, 105, 208);
+	hudPalette.data[1] = JO_COLOR_RGB(64, 64, 64);
+	hudPalette.data[2] = JO_COLOR_RGB(56, 56, 56);
+	hudPalette.data[3] = JO_COLOR_RGB(211, 88, 0);
+	hudPalette.data[4] = JO_COLOR_RGB(21, 11, 107);
 
-	palette.data[5] = JO_COLOR_RGB(246, 121, 0);
-	palette.data[6] = JO_COLOR_RGB(255, 255, 255);
-	palette.data[7] = JO_COLOR_RGB(181, 181, 181);
-	palette.data[8] = JO_COLOR_RGB(219, 219, 219);
+	hudPalette.data[5] = JO_COLOR_RGB(246, 121, 0);
+	hudPalette.data[6] = JO_COLOR_RGB(255, 255, 255);
+	hudPalette.data[7] = JO_COLOR_RGB(181, 181, 181);
+	hudPalette.data[8] = JO_COLOR_RGB(219, 219, 219);
 
-	palette.data[9] = JO_COLOR_RGB(158, 158, 158);
-	palette.data[10] = JO_COLOR_RGB(0, 0, 0);
-	palette.data[11] = JO_COLOR_RGB(255, 221, 199);
-	palette.data[12] = JO_COLOR_RGB(239, 81, 81);
-	palette.data[13] = JO_COLOR_RGB(239, 1, 1);
+	hudPalette.data[9] = JO_COLOR_RGB(158, 158, 158);
+	hudPalette.data[10] = JO_COLOR_RGB(0, 0, 0);
+	hudPalette.data[11] = JO_COLOR_RGB(255, 221, 199);
+	hudPalette.data[12] = JO_COLOR_RGB(239, 81, 81);
+	hudPalette.data[13] = JO_COLOR_RGB(239, 1, 1);
 
-	palette.data[14] = JO_COLOR_RGB(77, 157, 255);
-	palette.data[15] = JO_COLOR_RGB(210, 215, 255);
-	palette.data[16] = JO_COLOR_RGB(32, 215, 255);
-	palette.data[17] = JO_COLOR_RGB(117, 23, 11);
+	hudPalette.data[14] = JO_COLOR_RGB(77, 157, 255);
+	hudPalette.data[15] = JO_COLOR_RGB(210, 215, 255);
+	hudPalette.data[16] = JO_COLOR_RGB(32, 215, 255);
+	hudPalette.data[17] = JO_COLOR_RGB(117, 23, 11);
 
-	palette.data[18] = JO_COLOR_RGB(180, 32, 42);
-	palette.data[19] = JO_COLOR_RGB(250, 106, 10);
-	palette.data[20] = JO_COLOR_RGB(223, 62, 35);
-	palette.data[21] = JO_COLOR_RGB(115, 23, 45);
-	palette.data[22] = JO_COLOR_RGB(77, 97, 255);
+	hudPalette.data[18] = JO_COLOR_RGB(180, 32, 42);
+	hudPalette.data[19] = JO_COLOR_RGB(250, 106, 10);
+	hudPalette.data[20] = JO_COLOR_RGB(223, 62, 35);
+	hudPalette.data[21] = JO_COLOR_RGB(115, 23, 45);
+	hudPalette.data[22] = JO_COLOR_RGB(77, 97, 255);
 
 	// BG palettes
 	jo_create_palette(&bgPalette);
@@ -1239,9 +1237,32 @@ void initGameplayPalette()
 	bgPalette.data[223] = JO_COLOR_RGB(65, 105, 123);
 }
 
-void initGraphics(short levelId)
+void global_initMainMenu()
 {
+
 	jo_core_tv_off();
+	jo_set_tga_palette_handling(JO_NULL);
+
+	// Create palette
+	jo_create_palette(&fontPalette);
+	fontPalette.data[0] = JO_COLOR_RGB(255, 0, 220);
+	fontPalette.data[1] = JO_COLOR_RGB(255, 255, 255);
+	fontPalette.data[2] = JO_COLOR_RGB(37, 15, 219);
+	fontPalette.data[3] = JO_COLOR_RGB(239, 227, 13);
+	fontPalette.data[4] = JO_COLOR_RGB(0, 158, 17);
+	fontPalette.data[5] = JO_COLOR_RGB(0, 0, 0);
+
+	imageTextCharacters = jo_sprite_add_tga_tileset("TEX", "FONT.TGA", 1, fontTiles, JO_TILE_COUNT(fontTiles));
+	//  TODO: Load BG
+	jo_core_tv_on();
+}
+
+void display_initGraphics(short levelId)
+{
+
+	jo_core_tv_off();
+
+	jo_sprite_free_all();
 
 	// Init sprite palette
 	initGameplayPalette();
@@ -1256,21 +1277,20 @@ void initGraphics(short levelId)
 		{
 		case 0:
 			jo_clear_background(JO_COLOR_Transparent);
-			backgroundImage.data = JO_NULL;
+			backgroundImageBuffer.data = JO_NULL;
 
-			jo_tga_8bits_loader(&backgroundImage, "BG", "BGL1.TGA", 0);
-			jo_vdp2_set_nbg0_8bits_image(&backgroundImage, bgPalette.id, false, true);
-			jo_free_img(&backgroundImage);
+			// Load layer 0
+			jo_tga_8bits_loader(&backgroundImageBuffer, "BG", "BGL1A.TGA", 0);
+			jo_vdp2_set_nbg0_8bits_image(&backgroundImageBuffer, bgPalette.id, false, true);
+			jo_free_img(&backgroundImageBuffer);
 
-			jo_sprite_add_tga("TEX", "L1WOO.TGA", 1);
-			jo_sprite_add_tga("TEX", "LAGRA.TGA", 1);
-			jo_sprite_add_tga("TEX", "LABRI.TGA", 1);
+			// Load layer 1
+			jo_tga_8bits_loader(&backgroundImageBuffer, "BG", "BGL1B.TGA", 1);
+			jo_vdp2_set_nbg1_8bits_image(&backgroundImageBuffer, bgPalette.id, 0);
+			jo_free_img(&backgroundImageBuffer);
 
-			jo_sprite_add_image_pack("TILES", "L1.TEX", 0);
-			jo_map_load_from_file(0, 300, "MAP", "LVL1.MAP");
-			jo_map_draw_background(0, JO_FIXED_TO_INT(camera.x), 0);
-
-			jo_map_free(0);
+			// Load textures
+			jo_sprite_add_image_pack("TEX", "LVL1.TEX", 0);
 
 			imageHUDSWeaponOne = jo_sprite_add_tga("TEX", "HOLY.TGA", 1);
 			// imageHUDSWeaponTwo = jo_sprite_add_tga("TEX", "SWEAPA.TGA", JO_COLOR_Transparent);
@@ -1278,6 +1298,7 @@ void initGraphics(short levelId)
 
 			imageHUDBackgroundId = jo_sprite_add_tga("TEX", "HUDBG.TGA", 1);
 			imageHUDFillId = jo_sprite_add_tga("TEX", "HUDFIL.TGA", 1);
+			imageTextCharacters = jo_sprite_add_tga_tileset("TEX", "FONT.TGA", 1, fontTiles, JO_TILE_COUNT(fontTiles));
 			break;
 		}
 	}
@@ -1293,7 +1314,7 @@ void draw(void)
 		drawMainMenu();
 		break;
 	case GAMEPLAY:
-		drawGameplay();
+		display_drawGameplay();
 		break;
 	case PAUSED:
 		drawPaused();

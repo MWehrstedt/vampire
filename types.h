@@ -1,6 +1,7 @@
 #ifndef __TYPES_H_
 #define __TYPES_H_
 
+/// @brief Game state values
 typedef enum
 {
     MAINMENU = 0,
@@ -10,6 +11,7 @@ typedef enum
     MENU = 4
 } gamestate_e;
 
+/// @brief Hero state values
 typedef enum
 {
     IDLE,
@@ -21,6 +23,7 @@ typedef enum
     DYING
 } herostate_e;
 
+/// @brief Enemy state values
 typedef enum
 {
     E_NORMAL,
@@ -28,6 +31,7 @@ typedef enum
     E_DYING
 } enemystate_e;
 
+/// @brief Hitbox definition
 typedef struct
 {
     FIXED x;
@@ -37,6 +41,7 @@ typedef struct
     short type;
 } hitbox_t;
 
+/// @brief Dynamic hitbox definition
 typedef struct
 {
     FIXED x;
@@ -48,6 +53,7 @@ typedef struct
     bool active;
 } dynamic_hitbox_t;
 
+/// @brief Camera
 typedef struct
 {
     jo_camera cam;
@@ -56,18 +62,21 @@ typedef struct
     FIXED z;
 } camera_t;
 
+/// @brief Gravity
 typedef struct
 {
     FIXED max;
     FIXED step;
 } gravity_t;
 
+/// @brief Collision
 typedef struct
 {
     FIXED x;
     FIXED y;
 } collision_t;
 
+/// @brief Hero animation keyframe
 typedef struct
 {
     FIXED startframe;
@@ -130,6 +139,7 @@ typedef struct
     short TORSO_rotation[3];
 } mesh_death_keyframe_t;
 
+/// @brief Animation data
 typedef struct
 {
     short id;
@@ -140,46 +150,91 @@ typedef struct
     bool play;
 } animation_t;
 
+/// @brief Playable hero definition
 typedef struct
 {
+    /// @brief X position
     FIXED x;
+    /// @brief y position
     FIXED y;
+    /// @brief z position
     FIXED z;
+    /// @brief Horizontal speed
     FIXED speedX;
+    /// @brief Vertical speed
     FIXED speedY;
+
+    /// @brief Hero state
+    herostate_e state;
+    /// @brief Standing on ground
     bool isGrounded;
+    /// @brief Facing left
     bool isFacingLeft;
+    /// @brief Player hitbox
     hitbox_t hitbox;
+
+    /// @brief Weapon hitbox
     dynamic_hitbox_t sword;
+    /// @brief Weapon frame counter
     short swordCounter;
-    int currentKeyframe;
-    int invulnerability;
-    FIXED counter;
+
+    /// @brief Hero health
     short health;
+    /// @brief I-Frame counter
+    int invulnerability;
+
+    /// @brief Current animation pointer
     const animation_t *currentAnimation;
+    /// @brief Advance animation frame counter
     bool playAnimation;
+    /// @brief Animation frame counter
+    FIXED animationCounter;
+    /// @brief Current animation keyframe
+    int currentKeyframe;
+
 } hero_t;
 
+/// @brief Enemy
 typedef struct
 {
+    /// @brief Type id
     short type;
+    /// @brief X position
     FIXED x;
+    /// @brief Y position
     FIXED y;
+    /// @brief Hitbox
     hitbox_t hitbox;
+    /// @brief Enemy state
     enemystate_e state;
+    /// @brief Health
     short health;
+    /// @brief Is active
     bool active;
+    /// @brief Facing left
     bool isFacingLeft;
+    /// @brief Update routine
     void (*update)(short idx);
+    /// @brief Draw routine
     void (*draw)(short idx);
+    /// @brief spawning hitbox id
+    short hitboxId;
+    /// @brief Counter until enemy spawner hitbox is set to active again
+    short respawnCounter;
 } enemy_t;
 
+/// @brief Level definition
 typedef struct
 {
+    /// @brief Current level chunk
     short currentChunk;
+    /// @brief Chunk draw routine
     void (*const *display_geometry)(void);
+    /// @brief Number of chunks in the level
     short chunks;
+    /// @brief Number of static hitboxes
     short hitboxCount;
+    /// @brief Number of dynamic hitboxes
     short dynamicHitboxCount;
     FIXED boundaryLeft;
     FIXED boundaryRight;

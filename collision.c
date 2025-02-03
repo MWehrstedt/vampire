@@ -3,7 +3,7 @@
 #include "globalFunctions.h"
 #include "vars.h"
 
-FIXED detectCollisionX(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2)
+FIXED collisions_detectCollisionX(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2)
 {
     if (jo_square_intersect(x1, y1, width1, height1, x2, y2, width2, height2))
     {
@@ -14,7 +14,7 @@ FIXED detectCollisionX(const FIXED x1, const FIXED y1, const FIXED width1, const
     return JO_FIXED_0;
 }
 
-FIXED detectCollisionY(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2)
+FIXED collisions_detectCollisionY(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2)
 {
     if (jo_square_intersect(x1, y1, width1, height1, x2, y2, width2, height2))
     {
@@ -25,7 +25,7 @@ FIXED detectCollisionY(const FIXED x1, const FIXED y1, const FIXED width1, const
     return JO_FIXED_0;
 }
 
-void initDynamicHitboxes(const dynamic_hitbox_t *source)
+void global_initDynamicHitboxes(const dynamic_hitbox_t *source)
 {
     for (iterator = 0; iterator < currentLevel->dynamicHitboxCount; ++iterator)
     {

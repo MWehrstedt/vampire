@@ -14,7 +14,7 @@ static void (*const level1Geometry[])(void) = {
 
 
 void draw();
-void initGameplayCamera();
-void initGraphics(short levelId);
-jo_palette *handlePalette(void);
+void display_initGameplayCamera();
+void display_initGraphics(short levelId);
+jo_palette *display_handlePalette(void);
 #endif

@@ -5,6 +5,6 @@
 extern FIXED jumpHeight;
 extern FIXED heroWalkSpeed;
 
-void updateHero(void);
+void hero_updateHero(void);
 
 #endif

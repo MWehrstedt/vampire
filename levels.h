@@ -18,10 +18,11 @@ static const enemy_t enemiesListLevel1[] = {
             .width = toFIXED(14.97f),
             .height = toFIXED(29.04f),
         },
+        .hitboxId = 4
     },
 };
 
-void initActiveEnemies();
-void initLevel(short levelId);
+void levels_initActiveEnemies();
+void levels_initLevel(short levelId);
 
 #endif

@@ -42,8 +42,8 @@ void update(void)
     switch (gamestate)
     {
     case GAMEPLAY:
-        updateHero();
-        updateEnemies();
+        hero_updateHero();
+        global_updateEnemies();
         break;
     case ANIMTEST:
         camera.x = hero.x;
@@ -56,14 +56,15 @@ void update(void)
 
 void jo_main(void)
 {
-    jo_core_init(JO_COLOR_Cyan);
+    jo_core_init(JO_COLOR_Black);
 
     // Reorder screens
     jo_core_set_screens_order(JO_SPRITE_SCREEN, JO_RBG0_SCREEN, JO_NBG1_SCREEN, JO_NBG0_SCREEN);
 
+    global_initMainMenu();
     gamestate = MAINMENU;
 
-    jo_core_add_callback(handleInput);
+    jo_core_add_callback(input_handleInput);
     jo_core_add_callback(update);
     jo_core_add_callback(draw);
 

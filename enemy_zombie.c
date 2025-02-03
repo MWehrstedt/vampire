@@ -1,5 +1,6 @@
 #include <jo/jo.h>
 #include "enemy_zombie.h"
+#include "globalFunctions.h"
 #include "types.h"
 #include "vars.h"
 #include "collision.h"
@@ -7,7 +8,10 @@
 
 void drawZombie(short idx)
 {
-    // jo_printf(5, 7 + idx, "%d ; %d ; %d ", jo_fixed2int(currentActiveEnemies[idx].x), jo_fixed2int(currentActiveEnemies[idx].y), 5);
+    if (currentActiveEnemies[idx].state == E_DYING)
+    {
+        return;
+    }
 
     jo_3d_push_matrix();
     {
@@ -19,19 +23,31 @@ void drawZombie(short idx)
 
 void updateZombie(short idx)
 {
-    if (hero.sword.active)
+    switch (currentActiveEnemies[idx].state)
     {
-        collision = (collision_t){
-            .x = detectCollisionX(hero.sword.x, hero.sword.y, hero.sword.width, hero.sword.height, currentActiveEnemies[idx].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[idx].hitbox.height),
-            .y = detectCollisionY(hero.sword.x, hero.sword.y, hero.sword.width, hero.sword.height, currentActiveEnemies[idx].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[idx].hitbox.height)};
-
-        if (collision.x != JO_FIXED_0 || collision.y != JO_FIXED_0)
+    case E_NORMAL:
+        if (hero.sword.active)
         {
-            currentActiveEnemies[idx].active = false;
-            return;
-        }
-    }
+            collision = (collision_t){
+                .x = collisions_detectCollisionX(hero.sword.x, hero.sword.y, hero.sword.width, hero.sword.height, currentActiveEnemies[idx].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[idx].hitbox.height),
+                .y = collisions_detectCollisionY(hero.sword.x, hero.sword.y, hero.sword.width, hero.sword.height, currentActiveEnemies[idx].hitbox.x, currentActiveEnemies[iterator].hitbox.y, currentActiveEnemies[iterator].hitbox.width, currentActiveEnemies[idx].hitbox.height)};
 
-    currentActiveEnemies[idx].hitbox.x = currentActiveEnemies[idx].x - toFIXED(7.5f);
-    currentActiveEnemies[idx].hitbox.y = currentActiveEnemies[idx].y - toFIXED(15.0f);
+            if (collision.x != JO_FIXED_0 || collision.y != JO_FIXED_0)
+            {
+                currentActiveEnemies[idx].state = E_DYING;
+                currentActiveEnemies[idx].respawnCounter = 100;
+                return;
+            }
+        }
+
+        currentActiveEnemies[idx].hitbox.x = currentActiveEnemies[idx].x - toFIXED(7.5f);
+        currentActiveEnemies[idx].hitbox.y = currentActiveEnemies[idx].y - toFIXED(15.0f);
+        break;
+    case E_DYING:
+        if (!--(currentActiveEnemies[idx].respawnCounter))
+        {
+            global_destroyEnemy(idx);
+        }
+        break;
+    }
 }

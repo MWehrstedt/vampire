@@ -8,8 +8,8 @@ collision_t collision;
 
 int iterator;
 int iterator2;
-short temp;
-bool tempSolid = true;
+int iteratorText;
+int textSpriteOffset;
 bool printDebug = true;
 herostate_e oldHerostate;
 bool oldDirection;
@@ -19,7 +19,7 @@ bool oldDirection;
  */
 camera_t camera;
 FIXED animation_percent;
-jo_img_8bits backgroundImage;
+jo_img_8bits backgroundImageBuffer;
 
 int imageHUDBackgroundId;
 int imageHUDFillId;
@@ -27,11 +27,12 @@ int imageHUDSWeaponOne;
 int imageHUDSWeaponTwo;
 int imageHUDSWeaponThree;
 
+int imageTextCharacters;
+
 /**
  * Gameplay and character management
  */
 gamestate_e gamestate;
-herostate_e herostate;
 gravity_t gravity = {
     .step = toFIXED(0.15f),
     .max = toFIXED(5)};

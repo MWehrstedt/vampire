@@ -35,6 +35,6 @@ static const dynamic_hitbox_t level01DynamicHitboxes[5] = {
     (dynamic_hitbox_t){.x = toFIXED(278.53), .y = toFIXED(-83.56f), .width = toFIXED(106.69f), .height = toFIXED(85.0f), .type = DYNAMIC_HITBOX_TYPE_ENEMYSPAWNER, .attribute = 0, .active = true},
 };
 
-FIXED detectCollisionX(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2);
-FIXED detectCollisionY(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2);
+FIXED collisions_detectCollisionX(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2);
+FIXED collisions_detectCollisionY(const FIXED x1, const FIXED y1, const FIXED width1, const FIXED height1, const FIXED x2, const FIXED y2, const FIXED width2, const FIXED height2);
 #endif
